@@ -2,7 +2,7 @@
 CREATE SCHEMA IF NOT EXISTS "public";
 
 -- CreateTable
-CREATE TABLE "Business" (
+CREATE TABLE IF NOT EXISTS "Business" (
     "clientId" STRING NOT NULL,
     "businessName" STRING NOT NULL,
     "businessAddress" STRING NOT NULL,

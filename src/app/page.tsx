@@ -9,9 +9,9 @@ export default function Home() {
             <a href="#features" className="text-gray-600 hover:text-blue-600 transition">Features</a>
             <a href="#how-it-works" className="text-gray-600 hover:text-blue-600 transition">How It Works</a>
             <a href="#benefits" className="text-gray-600 hover:text-blue-600 transition">Benefits</a>
-            <button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">
-              Get Started
-            </button>
+            <a href="/login" className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">
+              Sign In
+            </a>
           </div>
         </div>
       </nav>
@@ -28,12 +28,12 @@ export default function Home() {
           privately and conveniently.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105 shadow-lg">
+          <a href="/login" className="bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105 shadow-lg">
             Start Free Trial
-          </button>
-          <button className="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-50 transition border-2 border-blue-600">
+          </a>
+          <a href="#how-it-works" className="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-50 transition border-2 border-blue-600">
             See How It Works
-          </button>
+          </a>
         </div>
         <div className="mt-12 text-gray-500">
           <p>Trusted by 2,500+ businesses worldwide</p>
