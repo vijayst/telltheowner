@@ -63,31 +63,6 @@ export default function OnboardingPage() {
     return `${sanitizedBusinessName}-${shortAddress}`;
   }
 
-  async function checkClientIdAvailability(id: string): Promise<boolean> {
-    // Generate a suggestion based on business name and address
-    if (businessName && businessAddress) {
-      const sanitizedBusinessName = businessName
-        .replace(/[^a-zA-Z0-9\s-]/g, "") // Remove special characters except hyphens
-        .replace(/\s+/g, " ") // Replace multiple spaces with single space
-        .trim()
-        .replace(/\s/g, "-") // Replace spaces with hyphens
-        .toLowerCase();
-
-      const sanitizedAddress = businessAddress
-        .replace(/[^a-zA-Z0-9\s-]/g, "") // Remove special characters except hyphens
-        .replace(/\s+/g, " ") // Replace multiple spaces with single space
-        .trim()
-        .replace(/\s/g, "-") // Replace spaces with hyphens
-        .toLowerCase();
-
-      // Take first 30 chars of address to keep it reasonable length
-      const shortAddress = sanitizedAddress.substring(0, 30);
-
-      return `${sanitizedBusinessName}-${shortAddress}`;
-    }
-    return generateClientId();
-  }
-
   // Update client ID suggestion when business name and address change
   useEffect(() => {
     if (businessName && businessAddress && !clientId) {
