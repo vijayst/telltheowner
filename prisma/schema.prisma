@@ -13,7 +13,7 @@ datasource db {
 }
 
 model Business {
-  clientId       String   @id @default(uuid())
+  clientId       String   @id
   businessName   String
   businessAddress String
   createdAt      DateTime @default(now())

@@ -17,6 +17,22 @@ export const authConfig = {
     signIn: "/login",
     error: "/auth/error",
   },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.email = user.email;
+        token.id = user.id;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.id as string;
+        session.user.email = token.email as string;
+      }
+      return session;
+    },
+  },
   providers: [
     {
       id: "email",

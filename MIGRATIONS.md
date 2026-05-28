@@ -30,6 +30,17 @@ npm run db:studio
 npm run db:migrate:deploy
 ```
 
+## Migration History
+
+### Migration 001_init
+- Created `Business` table with `clientId` as STRING type
+- Allows any string value for client ID (e.g., starbucks-485-bloor-st)
+
+### Migration 002_add_auth_tables
+- Created authentication tables for Auth.js
+- Added `User`, `Account`, `Session`, `VerificationToken` tables
+- Configured foreign keys and indexes for auth relationships
+
 ## When to Use Each Command
 
 ### `npm run db:migrate:dev`

@@ -12,7 +12,7 @@ export default function LoginPage() {
 
     await signIn("email", {
       email,
-      redirectTo: "/dashboard",
+      redirectTo: "/onboarding",
       redirect: false
     });
 

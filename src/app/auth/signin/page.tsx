@@ -5,7 +5,7 @@ export default function SignInPage() {
   async function handleSubmit(formData: FormData) {
     "use server";
     const email = formData.get("email") as string;
-    await signIn("email", { email, redirectTo: "/dashboard" });
+    await signIn("email", { email, redirectTo: "/onboarding" });
   }
 
   return (
