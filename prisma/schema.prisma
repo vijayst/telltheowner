@@ -13,11 +13,26 @@ datasource db {
 }
 
 model Business {
-  clientId       String   @id
+  clientId       String       @id
   businessName   String
   businessAddress String
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @default(now())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @default(now())
+  businessUsers  BusinessUser[]
+}
+
+model BusinessUser {
+  id          String   @id @default(cuid())
+  userId      String
+  businessId  String
+  role        String   @default("owner") // owner, admin, member, etc.
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  business Business @relation(fields: [businessId], references: [clientId], onDelete: Cascade)
+
+  @@unique([userId, businessId])
 }
 
 model Account {
@@ -48,15 +63,16 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String        @id @default(cuid())
   name          String?
-  email         String    @unique
+  email         String        @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @default(now())
+  businessUsers BusinessUser[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @default(now())
 }
 
 model VerificationToken {

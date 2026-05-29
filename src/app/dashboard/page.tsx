@@ -7,14 +7,18 @@ import { CopyUrlButton } from "@/components/CopyUrlButton";
 export default async function DashboardPage() {
   const session = await auth();
 
-  if (!session?.user) {
+  if (!session?.user || !session.user.id) {
     redirect("/login");
   }
 
-  // Get user's business information
+  // Get user's business information through businessUser relationship
   let business = null;
   try {
-    business = await prisma.business.findFirst();
+    const businessUser = await prisma.businessUser.findFirst({
+      where: { userId: session.user.id },
+      include: { business: true },
+    });
+    business = businessUser?.business || null;
   } catch (error) {
     console.error("Error fetching business:", error);
   }
