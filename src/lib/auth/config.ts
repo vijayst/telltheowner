@@ -18,10 +18,12 @@ export const authConfig = {
     error: "/auth/error",
   },
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.email = user.email;
+    async jwt({ token, user, account, trigger }) {
+      // Initial sign in - store user ID from user object
+      if (user && trigger === "signIn") {
         token.id = user.id;
+        token.email = user.email;
+        console.log("JWT callback - storing user data:", { id: user.id, email: user.email });
       }
       return token;
     },
@@ -29,6 +31,7 @@ export const authConfig = {
       if (session.user) {
         session.user.id = token.id as string;
         session.user.email = token.email as string;
+        console.log("Session callback - session data:", { id: session.user.id, email: session.user.email });
       }
       return session;
     },
