@@ -103,11 +103,8 @@ export default function ReviewWallDemoPage() {
           <div className="bg-white rounded-2xl shadow-lg p-8">
             {/* Header */}
             <div className="mb-6">
-              <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">
-                Demo
-              </span>
-              <h1 className="text-3xl font-bold text-gray-900 mt-2">
-                Review Wall Demo
+              <h1 className="text-3xl font-bold text-gray-900">
+                Review Wall
               </h1>
               <p className="text-gray-600 mt-2">
                 Public reviews for {demoBusiness.businessName}

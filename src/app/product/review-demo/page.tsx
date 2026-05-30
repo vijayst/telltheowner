@@ -26,11 +26,8 @@ export default function ReviewDemoPage() {
         <div className="max-w-2xl mx-auto">
           <div className="bg-white rounded-2xl shadow-lg p-8">
             <div className="mb-6">
-              <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">
-                Demo
-              </span>
-              <h1 className="text-3xl font-bold text-gray-900 mt-2">
-                Review Demo QR Code
+              <h1 className="text-3xl font-bold text-gray-900">
+                Leave a review
               </h1>
               <p className="text-gray-600 mt-2">
                 Scan this QR code to leave a review for our demo business
