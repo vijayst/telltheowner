@@ -140,7 +140,7 @@ export default function ReviewPage() {
       }
 
       // Redirect to thank you page
-      router.push(`/b/${clientId}/review/thank-you`);
+      router.push("/thank-you");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to submit review");
     } finally {
