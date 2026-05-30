@@ -74,7 +74,7 @@ NEXTAUTH_URL=http://localhost:3000
 Run this command to apply all migrations to your CockroachDB:
 
 ```bash
-npm run db:migrate:apply
+npm run db:migrate:deploy
 ```
 
 This will apply the following migrations:

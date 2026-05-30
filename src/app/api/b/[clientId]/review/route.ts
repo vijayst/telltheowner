@@ -36,12 +36,45 @@ export async function POST(
     // Parse form data with audio file
     const formData = await request.formData();
     const audioFile = formData.get("audio") as File;
+    const fingerprint = formData.get("fingerprint") as string | null;
 
     if (!audioFile) {
       return NextResponse.json(
         { error: "Audio file is required" },
         { status: 400 }
       );
+    }
+
+    if (!fingerprint) {
+      return NextResponse.json(
+        { error: "Fingerprint is required" },
+        { status: 400 }
+      );
+    }
+
+    // Check if this customer has submitted a review in the last 24 hours
+    const existingFingerprint = await prisma.customerFingerprint.findUnique({
+      where: {
+        clientId_fingerprint: {
+          clientId,
+          fingerprint,
+        },
+      },
+    });
+
+    if (existingFingerprint?.lastSubmittedAt) {
+      const lastSubmission = new Date(existingFingerprint.lastSubmittedAt);
+      const hoursSinceLastSubmission = (Date.now() - lastSubmission.getTime()) / (1000 * 60 * 60);
+
+      if (hoursSinceLastSubmission < 24) {
+        const hoursRemaining = Math.ceil(24 - hoursSinceLastSubmission);
+        return NextResponse.json(
+          {
+            error: `You have already submitted a review recently. Please wait ${hoursRemaining} hour${hoursRemaining !== 1 ? 's' : ''} before submitting another review.`,
+          },
+          { status: 429 } // Too Many Requests
+        );
+      }
     }
 
     // Convert File to Buffer
@@ -77,14 +110,36 @@ export async function POST(
       );
     }
 
-    // Save review to database
+    // Save review to database with customer fingerprint
     const review = await prisma.review.create({
       data: {
         clientId,
         text: transcription.text.trim(),
         visibility: false,
+        customerFingerprint: fingerprint,
       },
     });
+
+    // Update or create fingerprint record with submission tracking
+    if (existingFingerprint) {
+      await prisma.customerFingerprint.update({
+        where: { id: existingFingerprint.id },
+        data: {
+          lastSubmittedAt: new Date(),
+          reviewCount: { increment: 1 },
+        },
+      });
+    } else {
+      await prisma.customerFingerprint.create({
+        data: {
+          clientId,
+          fingerprint,
+          lastSubmittedAt: new Date(),
+          reviewCount: 1,
+        },
+      });
+    }
+    }
 
     return NextResponse.json({
       success: true,

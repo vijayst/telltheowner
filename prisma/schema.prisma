@@ -77,15 +77,30 @@ model User {
 }
 
 model Review {
-  id         String   @id @default(cuid())
-  clientId   String
-  text       String
-  visibility Boolean  @default(false)
-  createdAt  DateTime @default(now())
+  id              String   @id @default(cuid())
+  clientId        String
+  text            String
+  visibility      Boolean  @default(false)
+  customerFingerprint String
+  createdAt       DateTime @default(now())
 
   business Business @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
 
   @@index([clientId])
+  @@index([customerFingerprint])
+  @@index([createdAt])
+}
+
+model CustomerFingerprint {
+  id                    String   @id @default(cuid())
+  clientId              String
+  fingerprint           String
+  lastSubmittedAt       DateTime? // When this customer last submitted a review
+  reviewCount           Int      @default(0) // How many reviews this customer has submitted
+  firstSeenAt           DateTime @default(now())
+
+  @@unique([clientId, fingerprint]) // One record per customer per business
+  @@index([fingerprint])
 }
 
 model VerificationToken {

@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
+import { getOrCreateFingerprint } from "@/lib/fingerprint";
 
 export default function ReviewPage() {
   const params = useParams();
@@ -13,6 +14,13 @@ export default function ReviewPage() {
   const [hasRecording, setHasRecording] = useState(false);
   const [recordingTime, setRecordingTime] = useState(0);
   const [error, setError] = useState<string | null>(null);
+  const [fingerprint] = useState<string>(() => {
+    // Generate fingerprint once on component mount
+    if (typeof window !== 'undefined') {
+      return getOrCreateFingerprint();
+    }
+    return '';
+  });
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
@@ -127,6 +135,7 @@ export default function ReviewPage() {
 
       const formData = new FormData();
       formData.append("audio", audioBlob, "recording.webm");
+      formData.append("fingerprint", fingerprint);
 
       const response = await fetch(`/api/b/${clientId}/review`, {
         method: "POST",
@@ -139,6 +148,7 @@ export default function ReviewPage() {
         throw new Error(data.error || "Failed to submit review");
       }
 
+      setHasSubmitted(true);
       // Redirect to thank you page
       router.push("/thank-you");
     } catch (err) {
@@ -161,6 +171,7 @@ export default function ReviewPage() {
             </p>
           </div>
 
+          {/* Errors */}
           {error && (
             <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
               {error}
