@@ -12,16 +12,16 @@ export default function Footer() {
 
           <div className="flex flex-wrap justify-center gap-6">
             <div>
-              <h3 className="font-semibold text-white mb-3">Product</h3>
+              <h3 className="font-semibold text-white mb-3">Product Demo</h3>
               <ul className="space-y-2 text-sm">
                 <li>
                   <a href="/product/review-demo" className="hover:text-blue-500 transition">
-                    Review Demo
+                    Leave a review
                   </a>
                 </li>
                 <li>
                   <a href="/product/review-wall-demo" className="hover:text-blue-500 transition">
-                    Review Wall Demo
+                    Review wall
                   </a>
                 </li>
               </ul>

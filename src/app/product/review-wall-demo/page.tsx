@@ -86,9 +86,9 @@ export default function ReviewWallDemoPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+    <div className="h-screen bg-gradient-to-b from-blue-50 to-white flex flex-col">
       {/* Header */}
-      <nav className="container mx-auto px-6 py-4">
+      <nav className="container mx-auto px-6 py-4 flex-shrink-0">
         <div className="flex items-center justify-between">
           <a href="/" className="text-2xl font-bold text-blue-600">telltheowner</a>
           <a href="/" className="text-gray-600 hover:text-blue-600 transition">
@@ -98,16 +98,16 @@ export default function ReviewWallDemoPage() {
       </nav>
 
       {/* Main Content */}
-      <div className="container mx-auto px-6 py-12">
+      <div className="container mx-auto px-6 py-12 flex-1 overflow-y-auto">
         <div className="max-w-5xl mx-auto">
           <div className="bg-white rounded-2xl shadow-lg p-8">
             {/* Header */}
             <div className="mb-6">
               <h1 className="text-3xl font-bold text-gray-900">
-                Review Wall
+                Review wall
               </h1>
               <p className="text-gray-600 mt-2">
-                Public reviews for {demoBusiness.businessName}
+                Reviews for {demoBusiness.businessName}
               </p>
             </div>
 
@@ -248,7 +248,7 @@ export default function ReviewWallDemoPage() {
       </div>
 
       {/* Footer */}
-      <div className="mt-12">
+      <div className="flex-shrink-0">
         <footer className="bg-gray-900 text-gray-300 py-8">
           <div className="container mx-auto px-6 text-center text-sm text-gray-500">
             <p>&copy; {new Date().getFullYear()} Tell the Owner. All rights reserved.</p>
