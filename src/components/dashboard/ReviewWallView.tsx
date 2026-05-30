@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { SelectPicker, Loader } from "rsuite";
 
 interface Review {
   id: string;
@@ -86,25 +85,31 @@ export function ReviewWallView() {
       <div className="bg-white rounded-2xl shadow-lg p-8">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h2 className="text-2xl font-bold" style={{ color: '#111827' }}>Review Wall</h2>
-            <p className="mt-1" style={{ color: '#6b7280' }}>
+            <h2 className="text-2xl font-bold text-gray-900">Review Wall</h2>
+            <p className="mt-1 text-gray-600">
               View all customer reviews ({total} total)
             </p>
           </div>
 
           <div className="flex items-center gap-4">
             {/* Page Size Selector */}
-            <div className="flex items-center gap-2">
-              <label className="text-sm font-medium" style={{ color: '#374151' }}>Show:</label>
-              <SelectPicker
-                data={pageSizes}
-                value={pageSize}
-                onChange={handlePageSizeChange}
-                cleanable={false}
-                searchable={false}
-                style={{ width: 160 }}
-              />
-            </div>
+            <select
+              value={pageSize}
+              onChange={(e) => handlePageSizeChange(Number(e.target.value))}
+              className="px-4 py-2.5 border border-gray-300 rounded-lg text-sm font-medium text-gray-900 bg-white hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all cursor-pointer shadow-sm appearance-none pr-10"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                backgroundPosition: 'right 0.5rem center',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: '1.5em 1.5em'
+              }}
+            >
+              {pageSizes.map((size) => (
+                <option key={size.value} value={size.value}>
+                  {size.label}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 
@@ -118,7 +123,7 @@ export function ReviewWallView() {
         {/* Loading State */}
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <Loader size="md" content="Loading reviews..." vertical />
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
           </div>
         ) : (
           <>
@@ -126,8 +131,7 @@ export function ReviewWallView() {
             {reviews.length === 0 ? (
               <div className="text-center py-12 bg-gray-50 rounded-lg">
                 <svg
-                  className="w-16 h-16 mx-auto mb-4"
-                  style={{ color: '#9ca3af' }}
+                  className="w-16 h-16 mx-auto mb-4 text-gray-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -139,8 +143,8 @@ export function ReviewWallView() {
                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
                   />
                 </svg>
-                <h3 className="text-lg font-medium mb-2" style={{ color: '#111827' }}>No Reviews Yet</h3>
-                <p style={{ color: '#6b7280' }}>Reviews will appear here once customers start submitting them.</p>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">No Reviews Yet</h3>
+                <p className="text-gray-600">Reviews will appear here once customers start submitting them.</p>
               </div>
             ) : (
               <div className="space-y-4">
@@ -151,12 +155,12 @@ export function ReviewWallView() {
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex-1">
-                        <p className="text-lg leading-relaxed" style={{ color: '#111827' }}>{review.text}</p>
+                        <p className="text-lg leading-relaxed text-gray-900">{review.text}</p>
                       </div>
                     </div>
 
                     <div className="flex items-center justify-between mt-4">
-                      <div className="text-sm" style={{ color: '#6b7280' }}>
+                      <div className="text-sm text-gray-600">
                         <span className="font-medium">Submitted:</span>{" "}
                         {formatDate(review.createdAt)}
                       </div>
@@ -168,8 +172,8 @@ export function ReviewWallView() {
 
             {/* Pagination Controls */}
             {totalPages > 1 && (
-              <div className="flex items-center justify-between mt-8 pt-6 border-t" style={{ borderColor: '#e5e7eb' }}>
-                <div className="text-sm" style={{ color: '#6b7280' }}>
+              <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-200">
+                <div className="text-sm text-gray-600">
                   Showing {Math.min((page - 1) * pageSize + 1, total)} to{" "}
                   {Math.min(page * pageSize, total)} of {total} reviews
                 </div>

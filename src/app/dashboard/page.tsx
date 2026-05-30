@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Loader } from "rsuite";
 import { QRCodeView } from "@/components/dashboard/QRCodeView";
 import { ReviewWallView } from "@/components/dashboard/ReviewWallView";
 
@@ -36,7 +35,7 @@ export default function DashboardPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <Loader size="lg" content="Loading dashboard..." vertical />
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
       </div>
     );
   }
@@ -45,10 +44,10 @@ export default function DashboardPage() {
     <div className="min-h-screen bg-gray-50">
       <div className="flex min-h-screen">
         {/* Left Sidebar */}
-        <aside className="w-80 bg-white border-r border-gray-200 p-6 fixed h-full overflow-y-auto">
+        <aside className="w-72 bg-white border-r border-gray-200 p-6 fixed h-full overflow-y-auto">
           <div className="mb-8">
-            <h1 className="text-2xl font-bold" style={{ color: '#111827' }}>Dashboard</h1>
-            <p className="text-sm mt-1" style={{ color: '#6b7280' }}>Manage your reviews</p>
+            <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+            <p className="text-sm mt-1 text-gray-600">Manage your reviews</p>
           </div>
 
           <nav className="space-y-2">
@@ -56,10 +55,9 @@ export default function DashboardPage() {
               onClick={() => setCurrentView("qr-code")}
               className={`w-full flex items-center px-4 py-3 rounded-lg transition-colors ${
                 currentView === "qr-code"
-                  ? "bg-blue-50 font-medium"
-                  : "hover:bg-gray-100"
+                  ? "bg-blue-50 text-blue-600 font-medium"
+                  : "text-gray-700 hover:bg-gray-100"
               }`}
-              style={currentView === "qr-code" ? { color: '#2563eb' } : { color: '#111827' }}
             >
               <svg
                 className="w-5 h-5 mr-3"
@@ -81,10 +79,9 @@ export default function DashboardPage() {
               onClick={() => setCurrentView("review-wall")}
               className={`w-full flex items-center px-4 py-3 rounded-lg transition-colors ${
                 currentView === "review-wall"
-                  ? "bg-blue-50 font-medium"
-                  : "hover:bg-gray-100"
+                  ? "bg-blue-50 text-blue-600 font-medium"
+                  : "text-gray-700 hover:bg-gray-100"
               }`}
-              style={currentView === "review-wall" ? { color: '#2563eb' } : { color: '#111827' }}
             >
               <svg
                 className="w-5 h-5 mr-3"
@@ -105,7 +102,7 @@ export default function DashboardPage() {
         </aside>
 
         {/* Main Content Area */}
-        <main className="flex-1 ml-80 p-8 overflow-auto">
+        <main className="flex-1 ml-72 p-8 overflow-auto">
           {currentView === "qr-code" && <QRCodeView />}
           {currentView === "review-wall" && <ReviewWallView />}
         </main>

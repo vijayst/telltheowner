@@ -3,19 +3,6 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-
-  /* React Suite theme overrides for light mode */
-  --rs-text-primary: #111827;
-  --rs-text-secondary: #6b7280;
-  --rs-text-tertiary: #9ca3af;
-  --rs-text-disabled: #d1d5db;
-  --rs-bg-base: #ffffff;
-  --rs-bg-page: #ffffff;
-  --rs-bg-subtle: #f9fafb;
-  --rs-bg-hover: #f3f4f6;
-  --rs-bg-active: #e5e7eb;
-  --rs-border-primary: #e5e7eb;
-  --rs-border-secondary: #d1d5db;
 }
 
 @theme inline {
@@ -36,25 +23,4 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Force text colors to be darker */
-* {
-  text-shadow: none !important;
-}
-
-.text-gray-900 {
-  color: #111827 !important;
-}
-
-.text-gray-700 {
-  color: #111827 !important;
-}
-
-.text-gray-600 {
-  color: #6b7280 !important;
-}
-
-.text-gray-500 {
-  color: #6b7280 !important;
 }

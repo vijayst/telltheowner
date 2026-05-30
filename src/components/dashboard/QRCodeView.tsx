@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { QRCodeSVG } from "qrcode.react";
-import { Loader } from "rsuite";
 import { CopyUrlButton } from "@/components/CopyUrlButton";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
@@ -40,7 +39,7 @@ export function QRCodeView() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <Loader size="md" content="Loading..." vertical />
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
       </div>
     );
   }
@@ -66,8 +65,8 @@ export function QRCodeView() {
   return (
     <div className="max-w-2xl mx-auto">
       <div className="bg-white rounded-2xl shadow-lg p-8">
-        <h2 className="text-2xl font-bold mb-2" style={{ color: '#111827' }}>QR Code</h2>
-        <p className="mb-6" style={{ color: '#6b7280' }}>
+        <h2 className="text-2xl font-bold mb-2 text-gray-900">QR Code</h2>
+        <p className="mb-6 text-gray-600">
           Display this QR code to let customers scan and leave reviews
         </p>
 
@@ -75,12 +74,12 @@ export function QRCodeView() {
           {/* Business Info */}
           <div className="bg-gray-50 rounded-lg p-4 space-y-2">
             <div>
-              <span className="text-sm font-medium" style={{ color: '#6b7280' }}>Business Name</span>
-              <p className="text-lg font-semibold" style={{ color: '#111827' }}>{business.businessName}</p>
+              <span className="text-sm font-medium text-gray-500">Business Name</span>
+              <p className="text-lg font-semibold text-gray-900">{business.businessName}</p>
             </div>
             <div>
-              <span className="text-sm font-medium" style={{ color: '#6b7280' }}>Address</span>
-              <p style={{ color: '#111827' }}>{business.businessAddress}</p>
+              <span className="text-sm font-medium text-gray-500">Address</span>
+              <p className="text-gray-900">{business.businessAddress}</p>
             </div>
           </div>
 
@@ -99,7 +98,7 @@ export function QRCodeView() {
 
           {/* Review URL */}
           <div>
-            <label className="block text-sm font-medium mb-2" style={{ color: '#374151' }}>
+            <label className="block text-sm font-medium mb-2 text-gray-700">
               Review URL
             </label>
             <div className="flex gap-2">
@@ -107,8 +106,7 @@ export function QRCodeView() {
                 type="text"
                 readOnly
                 value={reviewUrl}
-                className="flex-1 p-3 bg-gray-50 rounded-lg border border-gray-200"
-                style={{ color: '#111827' }}
+                className="flex-1 p-3 bg-gray-50 rounded-lg border border-gray-200 text-gray-900"
               />
               <CopyUrlButton url={reviewUrl} />
             </div>
@@ -116,8 +114,8 @@ export function QRCodeView() {
 
           {/* Tips */}
           <div className="bg-blue-50 rounded-lg p-4">
-            <h3 className="font-semibold mb-2" style={{ color: '#1e3a8a' }}>Tips for Best Results</h3>
-            <ul className="text-sm space-y-1" style={{ color: '#1e40af' }}>
+            <h3 className="font-semibold mb-2 text-blue-900">Tips for Best Results</h3>
+            <ul className="text-sm space-y-1 text-blue-800">
               <li>• Print the QR code on durable material</li>
               <li>• Display prominently near checkout or entrance</li>
               <li>• Test the QR code before printing large quantities</li>
