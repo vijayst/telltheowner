@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Check Your Email - Tell the Owner",
+  description: "We've sent a magic link to your email. Click it to sign in to Tell the Owner.",
+};
+
 export default function MagicLinkSentPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 px-4">

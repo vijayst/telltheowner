@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "About Us - Tell the Owner",
+  description: "Learn about telltheowner.com and our mission to help businesses collect honest, private customer feedback.",
+};
+
 export default function About() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">

@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Privacy Policy - Tell the Owner",
+  description: "Read our privacy policy to understand how we protect your data and privacy.",
+};
+
 export default function Privacy() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
@@ -159,7 +164,7 @@ export default function Privacy() {
           </p>
           <div className="bg-gray-50 p-6 rounded-lg">
             <p className="text-gray-700 mb-2">
-              <strong>Email:</strong> privacy@telltheowner.com
+              <strong>Email:</strong> legal@telltheowner.com
             </p>
             <p className="text-gray-700 mb-2">
               <strong>Website:</strong> https://telltheowner.com

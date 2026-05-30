@@ -21,6 +21,11 @@ const demoBusiness = {
   businessName: "Demo Business",
 };
 
+export const metadata = {
+  title: "Review Wall - Tell the Owner",
+  description: "View public customer reviews from our demo business.",
+};
+
 export default function ReviewWallDemoPage() {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [total, setTotal] = useState(0);

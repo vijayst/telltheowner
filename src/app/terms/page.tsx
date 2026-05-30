@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Terms of Service - Tell the Owner",
+  description: "Read our terms of service to understand your rights and responsibilities when using telltheowner.com.",
+};
+
 export default function Terms() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">

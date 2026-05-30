@@ -1,6 +1,11 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
+export const metadata = {
+  title: "Tell the Owner - Collect Private Customer Reviews",
+  description: "Collect private, honest customer feedback through voice reviews. Generate QR codes and let customers speak their mind — privately and conveniently.",
+};
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">

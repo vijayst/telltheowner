@@ -6,6 +6,11 @@ const demoBusiness = {
   businessAddress: "123 Demo Street, Demo City, DC 12345",
 };
 
+export const metadata = {
+  title: "Demo QR Code - Tell the Owner",
+  description: "See how businesses use QR codes to collect private customer reviews.",
+};
+
 export default function ReviewDemoPage() {
   const reviewUrl = `https://telltheowner.com/b/${demoBusiness.clientId}/review`;
 

@@ -4,6 +4,11 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { QRCodeCanvas as QRCode } from "qrcode.react";
 
+export const metadata = {
+  title: "Setup Your Business - Tell the Owner",
+  description: "Complete your business setup and generate your QR code to start collecting customer reviews.",
+};
+
 export default function OnboardingPage() {
   const router = useRouter();
   const [businessName, setBusinessName] = useState("");

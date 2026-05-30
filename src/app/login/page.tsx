@@ -1,6 +1,11 @@
 import { signIn } from "@/auth";
 import { redirect } from "next/navigation";
 
+export const metadata = {
+  title: "Sign In - Tell the Owner",
+  description: "Sign in to Tell the Owner to manage your business reviews.",
+};
+
 export default function LoginPage() {
   async function handleSubmit(formData: FormData) {
     "use server";
