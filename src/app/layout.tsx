@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { CustomProvider } from "rsuite";
+import "rsuite/dist/rsuite.min.css";
 import "./globals.css";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 
@@ -36,8 +38,10 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json"></link>
       </head>
       <body className="min-h-full flex flex-col">
-        <ServiceWorkerRegister />
-        {children}
+        <CustomProvider theme="light">
+          <ServiceWorkerRegister />
+          {children}
+        </CustomProvider>
       </body>
     </html>
   );

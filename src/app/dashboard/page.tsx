@@ -1,131 +1,114 @@
-import { auth, signOut } from "@/auth";
-import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
-import { DashboardQRCode } from "@/components/DashboardQRCode";
-import { CopyUrlButton } from "@/components/CopyUrlButton";
+"use client";
 
-export default async function DashboardPage() {
-  const session = await auth();
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Loader } from "rsuite";
+import { QRCodeView } from "@/components/dashboard/QRCodeView";
+import { ReviewWallView } from "@/components/dashboard/ReviewWallView";
 
-  if (!session?.user || !session.user.id) {
-    redirect("/login");
+type DashboardView = "qr-code" | "review-wall";
+
+export default function DashboardPage() {
+  const router = useRouter();
+  const [currentView, setCurrentView] = useState<DashboardView>("qr-code");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await fetch("/api/auth/session");
+        const session = await response.json();
+
+        if (!session.user) {
+          router.push("/login");
+        } else {
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error("Auth check failed:", error);
+        router.push("/login");
+      }
+    };
+
+    checkAuth();
+  }, [router]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <Loader size="lg" content="Loading dashboard..." vertical />
+      </div>
+    );
   }
-
-  // Get user's business information through businessUser relationship
-  let business = null;
-  try {
-    const businessUser = await prisma.businessUser.findFirst({
-      where: { userId: session.user.id },
-      include: { business: true },
-    });
-    business = businessUser?.business || null;
-  } catch (error) {
-    console.error("Error fetching business:", error);
-  }
-
-  // If user hasn't completed onboarding, redirect to onboarding
-  if (!business) {
-    redirect("/onboarding");
-  }
-
-  const reviewUrl = `https://telltheowner.com/b/${business.clientId}/review`;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 px-4 py-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-                Welcome back!
-              </h1>
-              <p className="text-gray-600 dark:text-gray-300 mt-1">
-                {session.user.email}
-              </p>
-            </div>
-            <form
-              action={async () => {
-                "use server";
-                await signOut({ redirectTo: "/" });
-              }}
+    <div className="min-h-screen bg-gray-50">
+      <div className="flex min-h-screen">
+        {/* Left Sidebar */}
+        <aside className="w-80 bg-white border-r border-gray-200 p-6 fixed h-full overflow-y-auto">
+          <div className="mb-8">
+            <h1 className="text-2xl font-bold" style={{ color: '#111827' }}>Dashboard</h1>
+            <p className="text-sm mt-1" style={{ color: '#6b7280' }}>Manage your reviews</p>
+          </div>
+
+          <nav className="space-y-2">
+            <button
+              onClick={() => setCurrentView("qr-code")}
+              className={`w-full flex items-center px-4 py-3 rounded-lg transition-colors ${
+                currentView === "qr-code"
+                  ? "bg-blue-50 font-medium"
+                  : "hover:bg-gray-100"
+              }`}
+              style={currentView === "qr-code" ? { color: '#2563eb' } : { color: '#111827' }}
             >
-              <button
-                type="submit"
-                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+              <svg
+                className="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                Sign Out
-              </button>
-            </form>
-          </div>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 17h.01M16 17h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              QR Code
+            </button>
 
-          <div className="border-t border-gray-200 dark:border-gray-700 pt-8">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-              Business Information
-            </h2>
+            <button
+              onClick={() => setCurrentView("review-wall")}
+              className={`w-full flex items-center px-4 py-3 rounded-lg transition-colors ${
+                currentView === "review-wall"
+                  ? "bg-blue-50 font-medium"
+                  : "hover:bg-gray-100"
+              }`}
+              style={currentView === "review-wall" ? { color: '#2563eb' } : { color: '#111827' }}
+            >
+              <svg
+                className="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                />
+              </svg>
+              Review Wall
+            </button>
+          </nav>
+        </aside>
 
-            <div className="space-y-6">
-              {/* Business Name */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Business Name
-                </label>
-                <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                  <p className="text-gray-900 dark:text-white">{business.businessName}</p>
-                </div>
-              </div>
-
-              {/* Business Address */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Business Address
-                </label>
-                <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                  <p className="text-gray-900 dark:text-white">{business.businessAddress}</p>
-                </div>
-              </div>
-
-              {/* Client ID */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Client ID
-                </label>
-                <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                  <p className="text-gray-900 dark:text-white font-mono">{business.clientId}</p>
-                </div>
-              </div>
-
-              {/* Review URL */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Review URL
-                </label>
-                <div className="flex gap-2">
-                  <input
-                    type="text"
-                    readOnly
-                    value={reviewUrl}
-                    className="flex-1 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white"
-                  />
-                  <CopyUrlButton url={reviewUrl} />
-                </div>
-                <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                  Share this URL with your customers to collect reviews
-                </p>
-              </div>
-
-              {/* QR Code */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  QR Code
-                </label>
-                <DashboardQRCode reviewUrl={reviewUrl} />
-                <p className="mt-2 text-xs text-gray-500 dark:text-gray-400 text-center">
-                  Customers can scan this code to leave a review
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Main Content Area */}
+        <main className="flex-1 ml-80 p-8 overflow-auto">
+          {currentView === "qr-code" && <QRCodeView />}
+          {currentView === "review-wall" && <ReviewWallView />}
+        </main>
       </div>
     </div>
   );

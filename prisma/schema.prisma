@@ -20,6 +20,7 @@ model Business {
   updatedAt      DateTime     @default(now())
   businessUsers  BusinessUser[]
   reviews        Review[]
+  customerFingerprints CustomerFingerprint[]
 }
 
 model BusinessUser {
@@ -98,6 +99,8 @@ model CustomerFingerprint {
   lastSubmittedAt       DateTime? // When this customer last submitted a review
   reviewCount           Int      @default(0) // How many reviews this customer has submitted
   firstSeenAt           DateTime @default(now())
+
+  business              Business  @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
 
   @@unique([clientId, fingerprint]) // One record per customer per business
   @@index([fingerprint])
