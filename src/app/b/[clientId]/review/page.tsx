@@ -148,7 +148,6 @@ export default function ReviewPage() {
         throw new Error(data.error || "Failed to submit review");
       }
 
-      setHasSubmitted(true);
       // Redirect to thank you page
       router.push("/thank-you");
     } catch (err) {
