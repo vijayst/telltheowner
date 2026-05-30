@@ -19,6 +19,7 @@ model Business {
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @default(now())
   businessUsers  BusinessUser[]
+  reviews        Review[]
 }
 
 model BusinessUser {
@@ -73,6 +74,18 @@ model User {
   businessUsers BusinessUser[]
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @default(now())
+}
+
+model Review {
+  id         String   @id @default(cuid())
+  clientId   String
+  text       String
+  visibility Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  business Business @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
+
+  @@index([clientId])
 }
 
 model VerificationToken {
