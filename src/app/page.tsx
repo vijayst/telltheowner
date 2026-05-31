@@ -30,9 +30,6 @@ export default function Home() {
             See How It Works
           </a>
         </div>
-        <div className="mt-12 text-gray-500">
-          <p>Trusted by 2,500+ businesses worldwide</p>
-        </div>
       </section>
 
       {/* Features Section */}

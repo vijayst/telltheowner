@@ -7,7 +7,7 @@ export default async function Navigation() {
   return (
     <nav className="container mx-auto px-6 py-4">
       <div className="flex items-center justify-between">
-        <div className="text-2xl font-bold text-blue-600">telltheowner</div>
+        <div className="text-2xl font-bold text-blue-600">TellTheOwner</div>
         <div className="hidden md:flex items-center gap-6">
           <a href="#features" className="text-gray-600 hover:text-blue-600 transition">Features</a>
           <a href="#how-it-works" className="text-gray-600 hover:text-blue-600 transition">How It Works</a>

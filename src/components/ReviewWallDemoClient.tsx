@@ -90,7 +90,7 @@ export default function ReviewWallDemoClient() {
       {/* Header */}
       <nav className="container mx-auto px-6 py-4 flex-shrink-0">
         <div className="flex items-center justify-between">
-          <a href="/" className="text-2xl font-bold text-blue-600">telltheowner</a>
+          <a href="/" className="text-2xl font-bold text-blue-600">TellTheOwner</a>
           <a href="/" className="text-gray-600 hover:text-blue-600 transition">
             ← Back to Home
           </a>

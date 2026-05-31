@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">
-            <div className="text-2xl font-bold text-blue-500 mb-2">telltheowner</div>
+            <div className="text-2xl font-bold text-blue-500 mb-2">TellTheOwner</div>
             <p className="text-sm text-gray-400">
               Collect private, honest customer feedback through voice reviews.
             </p>

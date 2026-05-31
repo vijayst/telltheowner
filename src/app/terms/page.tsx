@@ -9,7 +9,7 @@ export default function Terms() {
       {/* Navigation */}
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <a href="/" className="text-2xl font-bold text-blue-600">telltheowner</a>
+          <a href="/" className="text-2xl font-bold text-blue-600">TellTheOwner</a>
         </div>
       </nav>
 
