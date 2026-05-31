@@ -26,7 +26,7 @@ export default function Home() {
           <a href="/login" className="bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105 shadow-lg">
             Start Free Trial
           </a>
-          <a href="#how-it-works" className="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-50 transition border-2 border-blue-600">
+          <a href="/product/review-demo" className="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-50 transition border-2 border-blue-600">
             See How It Works
           </a>
         </div>
@@ -184,14 +184,9 @@ export default function Home() {
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
             Join thousands of businesses gathering private, honest feedback from their customers.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/login" className="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-50 transition transform hover:scale-105 shadow-lg">
-              Start Your Free Trial
-            </a>
-            <a href="/login" className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-blue-600 transition">
-              Contact Sales
-            </a>
-          </div>
+          <a href="/login" className="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-50 transition transform hover:scale-105 shadow-lg inline-block">
+            Start Your Free Trial
+          </a>
         </div>
       </section>
 
