@@ -17,23 +17,40 @@ export default function DashboardClient({ children }: DashboardClientProps) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const checkAuth = async () => {
+    const checkAuthAndBusiness = async () => {
       try {
-        const response = await fetch("/api/auth/session");
-        const session = await response.json();
+        // Check if user is authenticated
+        const sessionResponse = await fetch("/api/auth/session");
+        const session = await sessionResponse.json();
 
         if (!session.user) {
           router.push("/login");
-        } else {
-          setLoading(false);
+          return;
         }
+
+        // Check if user has a business
+        const businessResponse = await fetch("/api/business/me");
+        if (businessResponse.status === 404) {
+          // User doesn't have a business, redirect to onboarding
+          router.push("/onboarding");
+          return;
+        }
+
+        if (!businessResponse.ok) {
+          console.error("Failed to check business status");
+          router.push("/login");
+          return;
+        }
+
+        // User is authenticated and has a business
+        setLoading(false);
       } catch (error) {
         console.error("Auth check failed:", error);
         router.push("/login");
       }
     };
 
-    checkAuth();
+    checkAuthAndBusiness();
   }, [router]);
 
   if (loading) {

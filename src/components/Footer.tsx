@@ -35,6 +35,16 @@ export default function Footer() {
                     About
                   </a>
                 </li>
+                <li>
+                  <a href="https://telltheowner.com/b/tell-the-owner-online/review" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition">
+                    Feedback
+                  </a>
+                </li>
+                <li>
+                  <a href="https://x.com/telltheownercom" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition">
+                    X
+                  </a>
+                </li>
               </ul>
             </div>
 

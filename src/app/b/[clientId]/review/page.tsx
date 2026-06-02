@@ -350,7 +350,7 @@ export default function ReviewPage() {
 
         {/* Footer */}
         <p className="text-center text-sm text-gray-500 mt-6">
-          Powered by Groq AI • Your voice review will be transcribed automatically
+          We don't store your audio files—only the transcript is saved for the business owner.
         </p>
       </div>
     </div>
