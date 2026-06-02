@@ -1,3 +1,5 @@
+import ProductHuntEmbed from "@/components/ProductHuntEmbed";
+
 export const metadata = {
   title: "About Us - Tell the Owner",
   description: "Learn about telltheowner.com and our mission to help businesses collect honest, private customer feedback.",
@@ -170,6 +172,11 @@ export default function About() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Product Hunt Section */}
+      <section className="container mx-auto px-6 py-12">
+        <ProductHuntEmbed />
       </section>
 
       {/* Meet the Team Section */}

@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import ProductHuntEmbed from "@/components/ProductHuntEmbed";
 
 export const metadata = {
   title: "Tell the Owner - Collect Private Customer Reviews",
@@ -185,6 +186,11 @@ export default function Home() {
             Start Your Free Trial
           </a>
         </div>
+      </section>
+
+      {/* Product Hunt Section */}
+      <section className="container mx-auto px-6 py-12">
+        <ProductHuntEmbed />
       </section>
 
       <Footer />
