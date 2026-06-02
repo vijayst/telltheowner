@@ -1,5 +1,4 @@
 import type { NextAuthConfig } from "next-auth";
-import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
 
 const resendApiKey = process.env.RESEND_API_KEY;
@@ -9,7 +8,6 @@ if (!resendApiKey) {
 }
 
 export const authConfig = {
-  adapter: PrismaAdapter(prisma),
   session: {
     strategy: "jwt",
   },
@@ -20,7 +18,7 @@ export const authConfig = {
   callbacks: {
     async jwt({ token, user, account, trigger }) {
       // Initial sign in - store user ID from user object
-      if (user && trigger === "signIn") {
+      if (user) {
         token.id = user.id;
         token.email = user.email;
         console.log("JWT callback - storing user data:", { id: user.id, email: user.email });
@@ -28,12 +26,42 @@ export const authConfig = {
       return token;
     },
     async session({ session, token }) {
-      if (session.user) {
+      if (session.user && token) {
         session.user.id = token.id as string;
         session.user.email = token.email as string;
         console.log("Session callback - session data:", { id: session.user.id, email: session.user.email });
       }
       return session;
+    },
+    async signIn({ user, account }) {
+      // Ensure user exists in database when signing in
+      if (account?.provider === "email" && user.email) {
+        try {
+          const existingUser = await prisma.user.findUnique({
+            where: { email: user.email },
+          });
+
+          if (!existingUser) {
+            // Create user if doesn't exist
+            const newUser = await prisma.user.create({
+              data: {
+                email: user.email,
+                name: user.name,
+                image: user.image,
+              },
+            });
+            user.id = newUser.id;
+            console.log("Created new user:", { id: newUser.id, email: newUser.email });
+          } else {
+            user.id = existingUser.id;
+            console.log("Found existing user:", { id: existingUser.id, email: existingUser.email });
+          }
+        } catch (error) {
+          console.error("Error ensuring user exists:", error);
+          return false;
+        }
+      }
+      return true;
     },
   },
   providers: [
