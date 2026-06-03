@@ -340,7 +340,6 @@ export default function ReviewPage() {
               <ol className="text-sm text-blue-800 space-y-1 list-decimal list-inside">
                 <li>Click "Start Recording" to begin</li>
                 <li>Speak clearly into your microphone</li>
-                <li>Recording automatically stops after 30 seconds</li>
                 <li>Review your recording or discard and try again</li>
                 <li>Click "Submit Review" when you're happy with it</li>
               </ol>

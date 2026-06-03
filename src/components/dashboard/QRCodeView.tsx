@@ -118,7 +118,7 @@ export function QRCodeView() {
             <ul className="text-sm space-y-1 text-blue-800">
               <li>• Print the QR code on durable material</li>
               <li>• Display prominently near checkout or entrance</li>
-              <li>• Test the QR code before printing large quantities</li>
+              <li>• Test the QR code before printing</li>
               <li>• Customers can scan with any smartphone camera app</li>
             </ul>
           </div>
