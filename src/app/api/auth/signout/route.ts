@@ -1,6 +1,12 @@
+import { NextResponse } from "next/server";
 import { signOut } from "@/auth";
-import { redirect } from "next/navigation";
 
 export async function GET() {
   await signOut({ redirectTo: "/" });
+  return NextResponse.json({ success: true });
+}
+
+export async function POST() {
+  await signOut({ redirectTo: "/" });
+  return NextResponse.json({ success: true });
 }

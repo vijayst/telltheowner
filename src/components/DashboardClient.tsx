@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { QrCode, MessageSquare, LogOut } from "lucide-react";
 import { QRCodeView } from "@/components/dashboard/QRCodeView";
 import { ReviewWallView } from "@/components/dashboard/ReviewWallView";
 
@@ -15,6 +16,8 @@ export default function DashboardClient({ children }: DashboardClientProps) {
   const router = useRouter();
   const [currentView, setCurrentView] = useState<DashboardView>("qr-code");
   const [loading, setLoading] = useState(true);
+  const [userEmail, setUserEmail] = useState<string>("");
+  const [signingOut, setSigningOut] = useState(false);
 
   useEffect(() => {
     const checkAuthAndBusiness = async () => {
@@ -27,6 +30,9 @@ export default function DashboardClient({ children }: DashboardClientProps) {
           router.push("/login");
           return;
         }
+
+        // Store user email
+        setUserEmail(session.user.email || "");
 
         // Check if user has a business
         const businessResponse = await fetch("/api/business/me");
@@ -52,6 +58,19 @@ export default function DashboardClient({ children }: DashboardClientProps) {
 
     checkAuthAndBusiness();
   }, [router]);
+
+  const handleSignOut = async () => {
+    setSigningOut(true);
+    try {
+      await fetch("/api/auth/signout");
+      router.push("/login");
+      router.refresh();
+    } catch (error) {
+      console.error("Sign out failed:", error);
+    } finally {
+      setSigningOut(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -80,19 +99,7 @@ export default function DashboardClient({ children }: DashboardClientProps) {
                   : "text-gray-700 hover:bg-gray-100"
               }`}
             >
-              <svg
-                className="w-5 h-5 mr-3"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 17h.01M16 17h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+              <QrCode className="w-5 h-5 mr-3" />
               QR Code
             </button>
 
@@ -104,22 +111,38 @@ export default function DashboardClient({ children }: DashboardClientProps) {
                   : "text-gray-700 hover:bg-gray-100"
               }`}
             >
-              <svg
-                className="w-5 h-5 mr-3"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                />
-              </svg>
+              <MessageSquare className="w-5 h-5 mr-3" />
               Review Wall
             </button>
           </nav>
+
+          {/* User Info & Sign Out */}
+          <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-200 bg-white">
+            <div className="mb-4">
+              <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Signed in as</p>
+              <p className="text-sm font-medium text-gray-900 truncate">{userEmail}</p>
+            </div>
+            <button
+              onClick={handleSignOut}
+              disabled={signingOut}
+              className="w-full flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {signingOut ? (
+                <span className="flex items-center">
+                  <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-gray-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Signing out...
+                </span>
+              ) : (
+                <span className="flex items-center">
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Sign Out
+                </span>
+              )}
+            </button>
+          </div>
         </aside>
 
         {/* Main Content Area */}
