@@ -1,4 +1,5 @@
 import ProductHuntEmbed from "@/components/ProductHuntEmbed";
+import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "About Us - Tell the Owner",
@@ -233,14 +234,7 @@ export default function About() {
         </a>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-6">
-          <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-            <p>&copy; 2026 telltheowner.com. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

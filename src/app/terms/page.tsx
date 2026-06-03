@@ -1,6 +1,8 @@
+import Footer from "@/components/Footer";
+
 export const metadata = {
   title: "Terms of Service - Tell the Owner",
-  description: "Read our terms of service to understand your rights and responsibilities when using telltheowner.com.",
+  description: "Read our terms of service to understand your rights and responsibilities when using telltheowner.com.
 };
 
 export default function Terms() {
@@ -294,14 +296,7 @@ export default function Terms() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 mt-12">
-        <div className="container mx-auto px-6">
-          <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-            <p>&copy; 2026 telltheowner.com. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

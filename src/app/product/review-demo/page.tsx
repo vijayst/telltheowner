@@ -1,4 +1,5 @@
 import { QRCodeSVG } from "qrcode.react";
+import Footer from "@/components/Footer";
 
 const demoBusiness = {
   clientId: "demo",
@@ -103,14 +104,7 @@ export default function ReviewDemoPage() {
         </div>
       </div>
 
-      {/* Footer */}
-      <div className="mt-12">
-        <footer className="bg-gray-900 text-gray-300 py-8">
-          <div className="container mx-auto px-6 text-center text-sm text-gray-500">
-            <p>&copy; {new Date().getFullYear()} Tell the Owner. All rights reserved.</p>
-          </div>
-        </footer>
-      </div>
+      <Footer />
     </div>
   );
 }
