@@ -2,7 +2,7 @@ import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Privacy Policy - Tell the Owner",
-  description: "Read our privacy policy to understand how we protect your data and privacy.
+  description: "Read our privacy policy to understand how we protect your data and privacy."
 };
 
 export default function Privacy() {
