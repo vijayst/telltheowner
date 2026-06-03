@@ -1,4 +1,5 @@
 import type { NextAuthConfig } from "next-auth";
+import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
 
 const resendApiKey = process.env.RESEND_API_KEY;
@@ -8,6 +9,7 @@ if (!resendApiKey) {
 }
 
 export const authConfig = {
+  adapter: PrismaAdapter(prisma),
   session: {
     strategy: "jwt",
   },
@@ -32,36 +34,6 @@ export const authConfig = {
         console.log("Session callback - session data:", { id: session.user.id, email: session.user.email });
       }
       return session;
-    },
-    async signIn({ user, account }) {
-      // Ensure user exists in database when signing in
-      if (account?.provider === "email" && user.email) {
-        try {
-          const existingUser = await prisma.user.findUnique({
-            where: { email: user.email },
-          });
-
-          if (!existingUser) {
-            // Create user if doesn't exist
-            const newUser = await prisma.user.create({
-              data: {
-                email: user.email,
-                name: user.name,
-                image: user.image,
-              },
-            });
-            user.id = newUser.id;
-            console.log("Created new user:", { id: newUser.id, email: newUser.email });
-          } else {
-            user.id = existingUser.id;
-            console.log("Found existing user:", { id: existingUser.id, email: existingUser.email });
-          }
-        } catch (error) {
-          console.error("Error ensuring user exists:", error);
-          return false;
-        }
-      }
-      return true;
     },
   },
   providers: [
