@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import { CopyUrlButton } from "@/components/CopyUrlButton";
+import { Printer } from "lucide-react";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 
@@ -62,6 +63,97 @@ export function QRCodeView() {
 
   const reviewUrl = `https://telltheowner.com/b/${business.clientId}/review`;
 
+  const handlePrintQRCode = () => {
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) return;
+
+    const printContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>${business.businessName} - QR Code</title>
+        <style>
+          body {
+            margin: 0;
+            padding: 40px;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+          }
+          .container {
+            text-align: center;
+            max-width: 600px;
+          }
+          .business-name {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #1f2937;
+          }
+          .business-address {
+            font-size: 16px;
+            color: #6b7280;
+            margin-bottom: 30px;
+          }
+          .qr-container {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          }
+          .instructions {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #374151;
+          }
+          .sub-instructions {
+            font-size: 14px;
+            color: #6b7280;
+          }
+          @media print {
+            body {
+              padding: 20px;
+            }
+            .qr-container {
+              box-shadow: none;
+              border: 2px solid #e5e7eb;
+            }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <h1 class="business-name">${business.businessName}</h1>
+          <p class="business-address">${business.businessAddress}</p>
+          
+          <div class="qr-container">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(reviewUrl)}" 
+                 alt="QR Code" 
+                 width="400" 
+                 height="400">
+          </div>
+          
+          <p class="instructions">Scan to Leave a Review</p>
+          <p class="sub-instructions">Use your phone's camera app or QR scanner</p>
+        </div>
+      </body>
+      </html>
+    `;
+
+    printWindow.document.write(printContent);
+    printWindow.document.close();
+    
+    // Wait for the window to load, then print
+    printWindow.onload = () => {
+      printWindow.print();
+    };
+  };
+
   return (
     <div className="max-w-2xl mx-auto">
       <div className="bg-white rounded-2xl shadow-lg p-8">
@@ -85,6 +177,15 @@ export function QRCodeView() {
 
           {/* QR Code */}
           <div className="flex flex-col items-center justify-center bg-white border-2 border-gray-200 rounded-lg p-8">
+            <div className="mb-4">
+              <button
+                onClick={handlePrintQRCode}
+                className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+              >
+                <Printer className="w-4 h-4" />
+                Print for Display
+              </button>
+            </div>
             <div className="bg-white p-4 rounded-lg">
               <QRCodeSVG
                 value={reviewUrl}
