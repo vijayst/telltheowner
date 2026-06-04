@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { QrCode, MessageSquare, LogOut, MoreHorizontal, X } from "lucide-react";
+import { QrCode, MessageSquare, LogOut, MoreHorizontal, X, Settings } from "lucide-react";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -18,7 +18,11 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const mobileSidebarRef = useRef<HTMLDivElement | null>(null);
 
   // Determine current view from pathname
-  const currentView = pathname.includes("review-wall") ? "review-wall" : "qr-code";
+  const currentView = pathname.includes("review-wall") 
+    ? "review-wall" 
+    : pathname.includes("edit-business")
+    ? "edit-business"
+    : "qr-code";
 
   useEffect(() => {
     const checkAuthAndBusiness = async () => {
@@ -120,6 +124,18 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <MessageSquare className="w-5 h-5 mr-3" />
               Review Wall
             </button>
+
+            <button
+              onClick={() => handleNavigation("edit-business")}
+              className={`w-full flex items-center px-4 py-3 rounded-lg transition-colors ${
+                currentView === "edit-business"
+                  ? "bg-blue-50 text-blue-600 font-medium"
+                  : "text-gray-700 hover:bg-gray-100"
+              }`}
+            >
+              <Settings className="w-5 h-5 mr-3" />
+              Edit Business
+            </button>
           </nav>
 
           {/* User Info & Sign Out */}
@@ -196,6 +212,18 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             >
               <MessageSquare className="w-5 h-5 mr-3" />
               Review Wall
+            </button>
+
+            <button
+              onClick={() => handleNavigation("edit-business")}
+              className={`w-full flex items-center px-4 py-3 rounded-lg transition-colors ${
+                currentView === "edit-business"
+                  ? "bg-blue-50 text-blue-600 font-medium"
+                  : "text-gray-700 hover:bg-gray-100"
+              }`}
+            >
+              <Settings className="w-5 h-5 mr-3" />
+              Edit Business
             </button>
           </nav>
 

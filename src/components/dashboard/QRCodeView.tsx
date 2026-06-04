@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { QRCodeSVG } from "qrcode.react";
 import { CopyUrlButton } from "@/components/CopyUrlButton";
-import { Printer } from "lucide-react";
-import { auth } from "@/auth";
-import { prisma } from "@/lib/prisma";
+import { Printer, Edit } from "lucide-react";
 
 interface BusinessData {
   clientId: string;
@@ -14,13 +14,22 @@ interface BusinessData {
 }
 
 export function QRCodeView() {
+  const router = useRouter();
+  const pathname = usePathname();
   const [business, setBusiness] = useState<BusinessData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchBusinessData();
-  }, []);
+  }, []); // Fetch data on component mount
+
+  // Refresh data when pathname changes (user navigates back from edit page)
+  useEffect(() => {
+    if (pathname === "/dashboard/qr-code") {
+      fetchBusinessData();
+    }
+  }, [pathname]);
 
   const fetchBusinessData = async () => {
     try {
@@ -157,10 +166,21 @@ export function QRCodeView() {
   return (
     <div className="max-w-2xl mx-auto">
       <div className="bg-white rounded-2xl shadow-lg p-8">
-        <h2 className="text-2xl font-bold mb-2 text-gray-900">QR Code</h2>
-        <p className="mb-6 text-gray-600">
-          Display this QR code to let customers scan and leave reviews
-        </p>
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900">QR Code</h2>
+            <p className="text-gray-600">
+              Display this QR code to let customers scan and leave reviews
+            </p>
+          </div>
+          <button
+            onClick={() => router.push("/dashboard/edit-business")}
+            className="flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-medium transition-colors"
+          >
+            <Edit className="w-4 h-4 mr-2" />
+            Edit Business
+          </button>
+        </div>
 
         <div className="space-y-6">
           {/* Business Info */}
