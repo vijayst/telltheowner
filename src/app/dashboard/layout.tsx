@@ -77,7 +77,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     }
   };
 
-  const handleNavigation = (view: "qr-code" | "review-wall") => {
+  const handleNavigation = (view: "qr-code" | "review-wall" | "edit-business") => {
     setSidebarOpen(false);
     router.push(`/dashboard/${view}`);
   };
