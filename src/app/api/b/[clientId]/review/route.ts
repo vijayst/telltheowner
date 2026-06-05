@@ -33,6 +33,19 @@ export async function POST(
       );
     }
 
+    // Check if user has already submitted a review using HttpOnly cookie
+    const cookieName = `review_submitted_${clientId}`;
+    const existingCookie = request.cookies.get(cookieName);
+
+    if (existingCookie) {
+      return NextResponse.json(
+        {
+          error: "You have already submitted a review. Please try again tomorrow."
+        },
+        { status: 429 }
+      );
+    }
+
     // Parse form data with audio file
     const formData = await request.formData();
     const audioFile = formData.get("audio") as File;
@@ -140,7 +153,8 @@ export async function POST(
       });
     }
 
-    return NextResponse.json({
+    // Create response and set HttpOnly cookie
+    const response = NextResponse.json({
       success: true,
       review: {
         id: review.id,
@@ -148,6 +162,19 @@ export async function POST(
         createdAt: review.createdAt,
       },
     });
+
+    // Set HttpOnly cookie with 1-day expiration
+    response.cookies.set({
+      name: cookieName,
+      value: 'true',
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 60 * 60 * 24, // 1 day in seconds
+      path: `/api/b/${clientId}/review`,
+    });
+
+    return response;
   } catch (error) {
     console.error("Error processing review:", error);
     return NextResponse.json(
