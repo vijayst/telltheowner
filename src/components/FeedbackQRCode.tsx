@@ -8,12 +8,12 @@ export default function FeedbackQRCode() {
   return (
     <div className="container mx-auto px-6 py-12">
       <div className="bg-white rounded-2xl shadow-lg p-8 max-w-md mx-auto text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">
+        <h2 className="text-4xl font-bold text-gray-900 mb-6">
           Leave a Feedback
         </h2>
         <div className="flex justify-center mb-6">
           <div className="bg-white p-4 rounded-lg border border-gray-200">
-            <QRCode value={reviewUrl} size={200} level="M" includeMargin={true} />
+            <QRCode value={reviewUrl} size={300} level="M" includeMargin={true} />
           </div>
         </div>
         <p className="text-gray-600 text-sm">
