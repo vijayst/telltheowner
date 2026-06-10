@@ -1,4 +1,4 @@
-import ProductHuntEmbed from "@/components/ProductHuntEmbed";
+import FeedbackQRCode from "@/components/FeedbackQRCode";
 import Footer from "@/components/Footer";
 
 export const metadata = {
@@ -175,9 +175,9 @@ export default function About() {
         </div>
       </section>
 
-      {/* Product Hunt Section */}
-      <section className="container mx-auto px-6 py-12">
-        <ProductHuntEmbed />
+      {/* Feedback QR Code Section */}
+      <section>
+        <FeedbackQRCode />
       </section>
 
       {/* Meet the Team Section */}

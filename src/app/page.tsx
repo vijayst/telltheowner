@@ -1,6 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import ProductHuntEmbed from "@/components/ProductHuntEmbed";
+import FeedbackQRCode from "@/components/FeedbackQRCode";
 
 export const metadata = {
   title: "Tell the Owner - Collect Private Customer Reviews",
@@ -188,9 +188,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Product Hunt Section */}
-      <section className="container mx-auto px-6 py-12">
-        <ProductHuntEmbed />
+      {/* Feedback QR Code Section */}
+      <section>
+        <FeedbackQRCode />
       </section>
 
       <Footer />
