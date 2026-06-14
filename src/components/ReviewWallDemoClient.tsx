@@ -108,8 +108,28 @@ export default function ReviewWallDemoClient() {
                 Review Wall
               </h1>
               <p className="text-gray-600 mt-2">
-                Public reviews for {demoBusiness.businessName}
+                Reviews for {demoBusiness.businessName}
               </p>
+            </div>
+
+            {/* Privacy Disclaimer */}
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl p-6 mb-6 shadow-sm">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 mt-0.5">
+                  <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Privacy Notice</h3>
+                  <p className="text-gray-700 text-sm leading-relaxed">
+                    Reviews are <strong>completely anonymous</strong> and visible <strong>only to the business owner</strong>. 
+                    The reviews displayed here are for <strong>demonstration purposes only</strong> and do not represent actual customer data.
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* Controls */}
