@@ -117,6 +117,85 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Example Review Section */}
+      <section className="container mx-auto px-6 py-20 bg-gradient-to-b from-blue-50 to-white">
+        <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
+          See It In Action
+        </h2>
+        <p className="text-xl text-gray-600 text-center mb-16 max-w-2xl mx-auto">
+          Here's what a typical voice review looks like after AI transcription
+        </p>
+
+        <div className="max-w-3xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-xl p-8 border border-blue-100">
+            {/* Review Header */}
+            <div className="flex items-start justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900">Anonymous Customer</p>
+                  <p className="text-sm text-gray-500">Restaurant Review</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-gray-500">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>2 minutes ago</span>
+              </div>
+            </div>
+
+            {/* Review Content */}
+            <div className="mb-6">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                  <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                    <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                  </svg>
+                </div>
+                <span className="text-sm font-medium text-green-700">Voice Review Transcribed</span>
+              </div>
+
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border-l-4 border-blue-600">
+                <p className="text-lg leading-relaxed text-gray-800 italic">
+                  "Hey, I just wanted to say that the food here was absolutely amazing! The pasta was perfectly cooked and the sauce had such rich flavor. The service was also fantastic — our server was really attentive and made great recommendations. Only thing I'd suggest is maybe adding a few more vegetarian options to the menu. Overall, definitely coming back!"
+                </p>
+              </div>
+            </div>
+
+            {/* Review Metadata */}
+            <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+              <div className="flex items-center gap-4 text-sm text-gray-500">
+                <div className="flex items-center gap-1">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                  </svg>
+                  <span>Transcribed by AI</span>
+                </div>
+              </div>
+              <div className="text-sm text-gray-400">
+                * Example review for demonstration
+              </div>
+            </div>
+          </div>
+
+          {/* Call to Action */}
+          <div className="text-center mt-8">
+            <a href="/product/review-demo" className="text-blue-600 hover:text-blue-700 font-semibold text-lg inline-flex items-center gap-2 transition">
+              Try the demo experience
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Section */}
       <section id="benefits" className="container mx-auto px-6 py-20 bg-white">
         <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
