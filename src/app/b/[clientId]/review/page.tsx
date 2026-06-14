@@ -158,8 +158,24 @@ export default function ReviewPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 px-4">
-      <div className="max-w-2xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      {/* Navigation Header */}
+      <nav className="container mx-auto px-6 py-6">
+        <div className="flex items-center justify-center max-w-2xl mx-auto">
+          <a href="/" className="flex items-center gap-3 group">
+            <img 
+              src="/icons/icon-96x96.png" 
+              alt="TellTheOwner Logo" 
+              className="w-12 h-12 rounded-lg shadow-md group-hover:shadow-lg transition-shadow"
+            />
+            <span className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+              TellTheOwner
+            </span>
+          </a>
+        </div>
+      </nav>
+
+      <div className="max-w-2xl mx-auto px-4 py-4">
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -347,10 +363,24 @@ export default function ReviewPage() {
           </div>
         </div>
 
-        {/* Footer */}
-        <p className="text-center text-sm text-gray-500 mt-6">
-          We don't store your audio files—only the transcript is saved for the business owner.
-        </p>
+        {/* Privacy Notice */}
+        <div className="mt-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl p-6 shadow-md">
+          <div className="flex items-start gap-4">
+            <div className="flex-shrink-0">
+              <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+            </div>
+            <div className="flex-1">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Your Privacy Matters</h3>
+              <p className="text-gray-700 text-base leading-relaxed">
+                We don't store your audio files — only the transcript is saved for the business owner. Your feedback helps them improve while keeping your voice private.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
