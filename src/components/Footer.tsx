@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">
-            <div className="text-2xl font-bold text-blue-500 mb-2">TellTheOwner</div>
+            <a href="/" className="text-2xl font-bold text-blue-500 mb-2 hover:text-blue-400 transition">TellTheOwner</a>
             <p className="text-sm text-gray-400">
               Collect private, honest customer feedback through voice reviews.
             </p>
@@ -33,6 +33,11 @@ export default function Footer() {
                 <li>
                   <a href="/about" className="hover:text-blue-500 transition">
                     About
+                  </a>
+                </li>
+                <li>
+                  <a href="/how-it-works" className="hover:text-blue-500 transition">
+                    How It Works
                   </a>
                 </li>
                 <li>

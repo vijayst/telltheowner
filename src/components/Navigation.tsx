@@ -7,11 +7,10 @@ export default async function Navigation() {
   return (
     <nav className="container mx-auto px-6 py-4">
       <div className="flex items-center justify-between">
-        <div className="text-2xl font-bold text-blue-600">TellTheOwner</div>
+        <a href="/" className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition">TellTheOwner</a>
         <div className="hidden md:flex items-center gap-6">
-          <a href="#features" className="text-gray-600 hover:text-blue-600 transition">Features</a>
-          <a href="#how-it-works" className="text-gray-600 hover:text-blue-600 transition">How It Works</a>
-          <a href="#benefits" className="text-gray-600 hover:text-blue-600 transition">Benefits</a>
+          <a href="/how-it-works" className="text-gray-600 hover:text-blue-600 transition">How It Works</a>
+          <a href="/about" className="text-gray-600 hover:text-blue-600 transition">About</a>
           {isAuthenticated ? (
             <a
               href="/api/auth/signout"
