@@ -78,47 +78,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section id="how-it-works" className="container mx-auto px-6 py-20">
-        <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
-          How It Works
-        </h2>
-        <p className="text-xl text-gray-600 text-center mb-16 max-w-2xl mx-auto">
-          Get started in three simple steps
-        </p>
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="text-center">
-            <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-3xl font-bold">
-              1
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">Register Your Business</h3>
-            <p className="text-gray-600">
-              Sign up and provide basic information about your business to get started.
-            </p>
-          </div>
-          <div className="text-center">
-            <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-3xl font-bold">
-              2
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">Get Your QR Code</h3>
-            <p className="text-gray-600">
-              Receive a unique review link and printable QR code for your business location.
-            </p>
-          </div>
-          <div className="text-center">
-            <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-3xl font-bold">
-              3
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">Collect Reviews</h3>
-            <p className="text-gray-600">
-              Display the QR code. Customers scan, speak their review, and you get the feedback.
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* Example Review Section */}
-      <section className="container mx-auto px-6 py-20 bg-gradient-to-b from-blue-50 to-white">
+      <section className="container mx-auto px-6 py-20 bg-gradient-to-b from-indigo-50 via-purple-50 to-white">
         <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
           See It In Action
         </h2>
@@ -127,12 +88,12 @@ export default function Home() {
         </p>
 
         <div className="max-w-3xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-xl p-8 border border-blue-100">
+          <div className="bg-white rounded-2xl shadow-xl p-8 border-2 border-purple-200">
             {/* Review Header */}
             <div className="flex items-start justify-between mb-6">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                  <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
                 </div>
@@ -161,7 +122,7 @@ export default function Home() {
                 <span className="text-sm font-medium text-green-700">Voice Review Transcribed</span>
               </div>
 
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border-l-4 border-blue-600">
+              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl p-6 border-l-4 border-purple-600">
                 <p className="text-lg leading-relaxed text-gray-800 italic">
                   "Hey, I just wanted to say that the food here was absolutely amazing! The pasta was perfectly cooked and the sauce had such rich flavor. The service was also fantastic — our server was really attentive and made great recommendations. Only thing I'd suggest is maybe adding a few more vegetarian options to the menu. Overall, definitely coming back!"
                 </p>
@@ -186,7 +147,7 @@ export default function Home() {
 
           {/* Call to Action */}
           <div className="text-center mt-8">
-            <a href="/product/review-demo" className="text-blue-600 hover:text-blue-700 font-semibold text-lg inline-flex items-center gap-2 transition">
+            <a href="/product/review-demo" className="text-purple-600 hover:text-purple-700 font-semibold text-lg inline-flex items-center gap-2 transition">
               Try the demo experience
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -196,8 +157,47 @@ export default function Home() {
         </div>
       </section>
 
+      {/* How It Works Section */}
+      <section id="how-it-works" className="container mx-auto px-6 py-20 bg-gradient-to-b from-green-50 to-emerald-50">
+        <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
+          How It Works
+        </h2>
+        <p className="text-xl text-gray-600 text-center mb-16 max-w-2xl mx-auto">
+          Get started in three simple steps
+        </p>
+        <div className="grid md:grid-cols-3 gap-8">
+          <div className="text-center">
+            <div className="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-3xl font-bold shadow-lg">
+              1
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-3">Register Your Business</h3>
+            <p className="text-gray-600">
+              Sign up and provide basic information about your business to get started.
+            </p>
+          </div>
+          <div className="text-center">
+            <div className="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-3xl font-bold shadow-lg">
+              2
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-3">Get Your QR Code</h3>
+            <p className="text-gray-600">
+              Receive a unique review link and printable QR code for your business location.
+            </p>
+          </div>
+          <div className="text-center">
+            <div className="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-3xl font-bold shadow-lg">
+              3
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-3">Collect Reviews</h3>
+            <p className="text-gray-600">
+              Display the QR code. Customers scan, speak their review, and you get the feedback.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Section */}
-      <section id="benefits" className="container mx-auto px-6 py-20 bg-white">
+      <section id="benefits" className="container mx-auto px-6 py-20 bg-gradient-to-b from-amber-50 via-orange-50 to-white">
         <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
           Why Private Reviews Matter
         </h2>
@@ -205,9 +205,9 @@ export default function Home() {
           Give your customers a safe space to share honest feedback
         </p>
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex items-start gap-4 bg-white rounded-xl p-6 shadow-md border border-orange-200">
+            <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
@@ -216,9 +216,9 @@ export default function Home() {
               <p className="text-gray-600">Without public pressure, customers share more genuine, detailed reviews.</p>
             </div>
           </div>
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-              <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex items-start gap-4 bg-white rounded-xl p-6 shadow-md border border-orange-200">
+            <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg className="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
@@ -227,9 +227,9 @@ export default function Home() {
               <p className="text-gray-600">Speaking is easier than typing. Capture more reviews from busy customers.</p>
             </div>
           </div>
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-              <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex items-start gap-4 bg-white rounded-xl p-6 shadow-md border border-orange-200">
+            <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </div>
@@ -238,9 +238,9 @@ export default function Home() {
               <p className="text-gray-600">QR codes make it effortless for customers to leave reviews anywhere.</p>
             </div>
           </div>
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
-              <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex items-start gap-4 bg-white rounded-xl p-6 shadow-md border border-orange-200">
+            <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg className="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
             </div>
