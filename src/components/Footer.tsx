@@ -40,11 +40,6 @@ export default function Footer() {
                     How It Works
                   </a>
                 </li>
-                <li>
-                  <a href="https://x.com/telltheownercom" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition">
-                    X
-                  </a>
-                </li>
               </ul>
             </div>
 
