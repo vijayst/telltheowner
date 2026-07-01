@@ -272,15 +272,6 @@ export default function Home() {
         <FeedbackQRCode />
       </section>
 
-      {/* Badges Section */}
-      <section className="container mx-auto px-6 py-12">
-        <div className="flex justify-center items-center">
-          <a href="https://codetrendy.com/?utm_source=telltheowner.com&utm_medium=badge" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-80">
-            <img src="https://codetrendy.com/api/badge?style=classic" alt="Listed on CodeTrendy" height="54" />
-          </a>
-        </div>
-      </section>
-
       <Footer />
     </div>
   );
