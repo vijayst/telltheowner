@@ -12,12 +12,20 @@ export default async function Navigation() {
           <a href="/how-it-works" className="text-gray-600 hover:text-blue-600 transition">How It Works</a>
           <a href="/about" className="text-gray-600 hover:text-blue-600 transition">About</a>
           {isAuthenticated ? (
-            <a
-              href="/api/auth/signout"
-              className="bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 transition"
-            >
-              Sign Out
-            </a>
+            <>
+              <a
+                href="/dashboard"
+                className="text-blue-600 hover:text-blue-700 transition"
+              >
+                Dashboard
+              </a>
+              <a
+                href="/api/auth/signout"
+                className="bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 transition"
+              >
+                Sign Out
+              </a>
+            </>
           ) : (
             <a href="/login" className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">
               Sign In

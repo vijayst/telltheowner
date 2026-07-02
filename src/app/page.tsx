@@ -1,13 +1,17 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import FeedbackQRCode from "@/components/FeedbackQRCode";
+import { auth } from "@/auth";
 
 export const metadata = {
   title: "Tell the Owner - Collect Private Customer Reviews",
   description: "Collect private, honest customer feedback through voice reviews. Generate QR codes and let customers speak their mind — privately and conveniently.",
 };
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth();
+  const isAuthenticated = !!session?.user;
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       <Navigation />
@@ -24,8 +28,11 @@ export default function Home() {
           privately and conveniently.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/login" className="bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105 shadow-lg">
-            Start Free Trial
+          <a
+            href={isAuthenticated ? "/dashboard" : "/login"}
+            className="bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105 shadow-lg"
+          >
+            {isAuthenticated ? "Go to Dashboard" : "Start Free Trial"}
           </a>
           <a href="/how-it-works" className="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-50 transition border-2 border-blue-600">
             See How It Works
