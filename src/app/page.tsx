@@ -27,16 +27,23 @@ export default async function Home() {
           Generate QR codes for your business and let customers speak their mind —
           privately and conveniently.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href={isAuthenticated ? "/dashboard" : "/login"}
-            className="bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105 shadow-lg"
-          >
-            {isAuthenticated ? "Go to Dashboard" : "Start Free Trial"}
-          </a>
-          <a href="/how-it-works" className="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-50 transition border-2 border-blue-600">
-            See How It Works
-          </a>
+        <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href={isAuthenticated ? "/dashboard" : "/login"}
+              className="bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105 shadow-lg"
+            >
+              {isAuthenticated ? "Go to Dashboard" : "Get Started for Free"}
+            </a>
+            <a href="/how-it-works" className="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-50 transition border-2 border-blue-600">
+              See How It Works
+            </a>
+          </div>
+          {!isAuthenticated && (
+            <p className="text-sm text-gray-600 mt-2">
+              Free for the first 100 customers for 1 year
+            </p>
+          )}
         </div>
       </section>
 
