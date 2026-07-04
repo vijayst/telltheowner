@@ -4,8 +4,8 @@ import FeedbackQRCode from "@/components/FeedbackQRCode";
 import { auth } from "@/auth";
 
 export const metadata = {
-  title: "Tell the Owner - Collect Private Customer Reviews",
-  description: "Collect private, honest customer feedback through voice reviews. Generate QR codes and let customers speak their mind — privately and conveniently.",
+  title: "Tell the Owner",
+  description: "Collect private, honest customer feedback through voice reviews",
 };
 
 export default async function Home() {
@@ -18,10 +18,12 @@ export default async function Home() {
 
       {/* Hero Section */}
       <section className="container mx-auto px-6 py-20 text-center">
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-          Hear What Your Customers<br />
-          <span className="text-blue-600">Really Think</span>
+        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight">
+          Tell the Owner
         </h1>
+        <p className="text-2xl text-blue-600 font-semibold mb-6">
+          Feedback platform for small businesses
+        </p>
         <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
           Collect private, honest customer feedback through voice reviews.
           Generate QR codes for your business and let customers speak their mind —

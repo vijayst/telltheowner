@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tell the owner",
-  description: "Tell the owner about the problem you encountered or leave behind compliements",
+  title: "Feedback platform for businesses | Tell the Owner",
+  description: "Collect private, honest customer feedback through voice reviews",
 };
 
 export default function RootLayout({
