@@ -59,12 +59,12 @@ export function VoiceReviewRecorder({
         </div>
       )}
 
-      <div className={`flex flex-col sm:flex-row gap-3 justify-center ${compact ? 'w-full h-full' : ''}`}>
+      <div className={`flex sm:flex-row gap-3 justify-center ${compact ? 'w-full' : 'flex-col'}`}>
         {!isRecording && !hasRecording && (
           <button
             onClick={onStartRecording}
             className={`flex-1 sm:flex-none bg-blue-500 text-white font-semibold hover:bg-blue-600 transition-all shadow-lg ${
-              compact ? "px-6 py-3 text-lg w-full h-[216px]" : "px-8 py-4 rounded-lg"
+              compact ? "px-6 py-3 text-lg w-full min-h-[216px] h-[216px]" : "px-8 py-4 rounded-lg"
             }`}
             disabled={isUploading}
           >
