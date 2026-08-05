@@ -68,8 +68,12 @@ export function useVoiceRecorder(
     setAudioUrl(null);
     audioChunksRef.current = [];
 
+    console.log("Requesting microphone access...");
+
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+      console.log("Microphone access granted, starting recording...");
 
       const mediaRecorder = new MediaRecorder(stream, {
         mimeType: "audio/webm;codecs=opus",
