@@ -10,6 +10,19 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: "frame-ancestors *",
           },
+          {
+            key: "Permissions-Policy",
+            value: "microphone=(self)",
+          },
+        ],
+      },
+      {
+        source: "/sw.js",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "no-cache, no-store, must-revalidate",
+          },
         ],
       },
     ];
