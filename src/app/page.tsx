@@ -330,7 +330,7 @@ export default async function Home() {
           using a widget like the one below. Share your thoughts about our site and what we can do
           to improve!
         </p>
-        <TellTheOwnerEmbed clientId="tell-the-owner" />
+        <TellTheOwnerEmbed clientId="tell-the-owner" baseUrl="https://telltheowner.com" />
       </section>
 
       {/* Benefits Section */}
