@@ -21,10 +21,10 @@ export function ReviewThankYouView({ compact = false }: ReviewThankYouViewProps)
         </svg>
       </div>
 
-      <h2 className={`font-bold text-gray-900 ${compact ? "text-lg mb-2" : "text-4xl mb-4"}`}>
+      <h2 className={`font-bold text-gray-900 ${compact ? "text-xl mb-2" : "text-4xl mb-4"}`}>
         Thank You!
       </h2>
-      <p className={`text-gray-600 ${compact ? "text-xs mb-3" : "text-xl mb-8"}`}>
+      <p className={`text-gray-600 ${compact ? "text-md mb-3" : "text-xl mb-8"}`}>
         Your voice review has been submitted.
       </p>
 
