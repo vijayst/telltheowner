@@ -26,7 +26,7 @@ export function VoiceReviewRecorder({
   compact = false,
 }: VoiceReviewRecorderProps) {
   return (
-    <div className={compact ? !isRecording && !hasRecording ? "space-y-4" : "p-4 space-y-4" : "space-y-6"}>
+    <div className={compact ? (!isRecording && !hasRecording) ? "space-y-4" : "p-4 space-y-4" : "space-y-6"}>
       {error && (
         <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
           {error}
