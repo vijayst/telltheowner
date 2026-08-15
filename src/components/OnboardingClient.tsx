@@ -200,14 +200,14 @@ export default function OnboardingClient() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Header */}
-      <header className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700">
+      <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <button
               onClick={() => router.push("/")}
-              className="flex items-center px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              className="flex items-center px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
             >
               <Home className="w-5 h-5 mr-2" />
               <span className="text-sm font-medium">Home</span>
@@ -215,7 +215,7 @@ export default function OnboardingClient() {
             <button
               onClick={handleSignOut}
               disabled={signingOut}
-              className="flex items-center px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {signingOut ? (
                 <>
@@ -238,15 +238,15 @@ export default function OnboardingClient() {
 
       {/* Main Content */}
       <div className="flex items-center justify-center px-4 py-8">
-        <div className="max-w-2xl w-full space-y-8 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl">
+        <div className="max-w-2xl w-full space-y-8 bg-white p-8 rounded-2xl shadow-xl">
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
               Welcome to Tell the Owner
             </h1>
-            <h2 className="text-xl text-gray-600 dark:text-gray-300">
+            <h2 className="text-xl text-gray-600">
               Set up your business profile
             </h2>
-            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+            <p className="mt-2 text-sm text-gray-500">
               Let's get your business ready to receive customer reviews
             </p>
           </div>
@@ -256,7 +256,7 @@ export default function OnboardingClient() {
           <div>
             <label
               htmlFor="businessName"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              className="block text-sm font-medium text-gray-700 mb-2"
             >
               Business Name
             </label>
@@ -267,7 +267,7 @@ export default function OnboardingClient() {
               required
               value={businessName}
               onChange={(e) => setBusinessName(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900"
               placeholder="Enter your business name"
             />
           </div>
@@ -275,10 +275,10 @@ export default function OnboardingClient() {
           {/* Online Business Toggle */}
           <div className="flex items-center justify-between">
             <div>
-              <label htmlFor="isOnlineBusiness" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="isOnlineBusiness" className="text-sm font-medium text-gray-700">
                 Online Business
               </label>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+              <p className="text-xs text-gray-500 mt-1">
                 Toggle on if you operate online only
               </p>
             </div>
@@ -286,7 +286,7 @@ export default function OnboardingClient() {
               type="button"
               onClick={() => setIsOnlineBusiness(!isOnlineBusiness)}
               className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                isOnlineBusiness ? 'bg-blue-600' : 'bg-gray-200 dark:bg-gray-600'
+                isOnlineBusiness ? 'bg-blue-600' : 'bg-gray-200'
               }`}
             >
               <span className="sr-only">Use setting</span>
@@ -303,7 +303,7 @@ export default function OnboardingClient() {
           <div>
             <label
               htmlFor="businessAddress"
-              className={`block text-sm font-medium ${isOnlineBusiness ? 'text-gray-400 dark:text-gray-500' : 'text-gray-700 dark:text-gray-300'} mb-2`}
+              className={`block text-sm font-medium ${isOnlineBusiness ? 'text-gray-400' : 'text-gray-700'} mb-2`}
             >
               Business Address {isOnlineBusiness && '(Optional)'}
             </label>
@@ -315,10 +315,10 @@ export default function OnboardingClient() {
               value={businessAddress}
               onChange={(e) => setBusinessAddress(e.target.value)}
               disabled={isOnlineBusiness}
-              className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:border-gray-600 dark:text-white ${
+              className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 ${
                 isOnlineBusiness 
-                  ? 'bg-gray-100 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed' 
-                  : 'bg-white dark:bg-gray-700'
+                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+                  : 'bg-white'
               }`}
               placeholder="Enter your business address"
             />
@@ -328,7 +328,7 @@ export default function OnboardingClient() {
           <div>
             <label
               htmlFor="clientId"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              className="block text-sm font-medium text-gray-700 mb-2"
             >
               Client ID
             </label>
@@ -341,33 +341,33 @@ export default function OnboardingClient() {
                 value={clientId}
                 onChange={(e) => handleClientIdChange(e.target.value)}
                 onBlur={handleClientIdBlur}
-                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900"
                 placeholder="e.g., starbucks-coffee-485-bloor-st"
               />
               <button
                 type="button"
                 onClick={handleGenerateClientId}
-                className="px-4 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-medium dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-gray-200"
+                className="px-4 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-medium"
               >
                 Generate
               </button>
             </div>
             {isCheckingClientId && (
-              <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+              <p className="mt-1 text-sm text-gray-500">
                 Checking availability...
               </p>
             )}
             {!isCheckingClientId && clientId && isClientIdAvailable && (
-              <p className="mt-1 text-sm text-green-600 dark:text-green-400">
+              <p className="mt-1 text-sm text-green-600">
                 ✓ This client ID is available
               </p>
             )}
             {!isCheckingClientId && clientId && !isClientIdAvailable && (
-              <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+              <p className="mt-1 text-sm text-red-600">
                 ✗ This client ID is already taken. Please choose another.
               </p>
             )}
-            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+            <p className="mt-1 text-xs text-gray-500">
               Format: businessName-businessAddress. Your review URL will be: telltheowner.com/review/{clientId}
             </p>
           </div>
@@ -377,7 +377,7 @@ export default function OnboardingClient() {
             <div>
               <label
                 htmlFor="reviewUrl"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                className="block text-sm font-medium text-gray-700 mb-2"
               >
                 Review URL
               </label>
@@ -387,9 +387,9 @@ export default function OnboardingClient() {
                 type="text"
                 readOnly
                 value={reviewUrl}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 dark:bg-gray-600 dark:border-gray-600 dark:text-gray-300 cursor-not-allowed"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 text-gray-900 cursor-not-allowed"
               />
-              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+              <p className="mt-1 text-xs text-gray-500">
                 Share this URL with your customers to collect reviews
               </p>
             </div>
@@ -398,10 +398,10 @@ export default function OnboardingClient() {
           {/* QR Code */}
           {qrCodeUrl && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
                 QR Code
               </label>
-              <div className="flex justify-center p-4 bg-white rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
+              <div className="flex justify-center p-4 bg-white rounded-lg border border-gray-200">
                 <QRCode
                   value={qrCodeUrl}
                   size={200}
@@ -409,7 +409,7 @@ export default function OnboardingClient() {
                   includeMargin={true}
                 />
               </div>
-              <p className="mt-2 text-xs text-gray-500 dark:text-gray-400 text-center">
+              <p className="mt-2 text-xs text-gray-500 text-center">
                 Customers can scan this code to leave a review
               </p>
             </div>
@@ -417,8 +417,8 @@ export default function OnboardingClient() {
 
           {/* Error Message */}
           {error && (
-            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
-              <p className="text-sm text-red-800 dark:text-red-200">{error}</p>
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <p className="text-sm text-red-800">{error}</p>
             </div>
           )}
 
