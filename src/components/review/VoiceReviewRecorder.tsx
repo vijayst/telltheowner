@@ -26,7 +26,7 @@ export function VoiceReviewRecorder({
   compact = false,
 }: VoiceReviewRecorderProps) {
   return (
-    <div className={compact ? "space-y-4" : "space-y-6"}>
+    <div className={compact ? !isRecording && !hasRecording ? "space-y-4" : "p-4 space-y-4" : "space-y-6"}>
       {error && (
         <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
           {error}
@@ -34,7 +34,7 @@ export function VoiceReviewRecorder({
       )}
 
       {isRecording && (
-        <div className={`text-center ${compact ? "pt-4" : ""}`}>
+        <div className={`text-center`}>
           <div
             className={`inline-flex items-center justify-center rounded-full bg-red-100 text-red-600 mb-2 ${
               compact ? "w-16 h-16" : "w-20 h-20 mb-4"
@@ -51,7 +51,7 @@ export function VoiceReviewRecorder({
       )}
 
       {hasRecording && audioUrl && (
-        <div className="bg-gray-50 rounded-lg p-4">
+        <div className={`${compact ? 'mb-8' : 'bg-gray-50 rounded-lg p-4'}`}>
           <audio controls src={audioUrl} className="w-full" />
           <p className="text-sm text-gray-600 mt-2 text-center">
             Recording length: {recordingTime} seconds
@@ -121,7 +121,7 @@ export function VoiceReviewRecorder({
             <button
               onClick={onDiscardRecording}
               className={`flex-1 sm:flex-none bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition-all ${
-                compact ? "px-6 py-3 text-sm mb-4" : "px-8 py-4"
+                compact ? "px-6 py-3 text-sm" : "px-8 py-4"
               }`}
             >
               <svg
@@ -142,7 +142,7 @@ export function VoiceReviewRecorder({
             <button
               onClick={onSubmitRecording}
               className={`flex-1 sm:flex-none bg-green-500 text-white rounded-lg font-semibold hover:bg-green-600 transition-all shadow-lg hover:shadow-xl ${
-                compact ? "px-6 py-3 text-sm mb-4" : "px-8 py-4"
+                compact ? "px-6 py-2 text-sm" : "px-8 py-4"
               }`}
             >
               <svg
@@ -158,7 +158,7 @@ export function VoiceReviewRecorder({
                   d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
                 />
               </svg>
-              Submit Review
+              Submit
             </button>
           </>
         )}
