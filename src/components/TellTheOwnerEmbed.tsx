@@ -19,16 +19,7 @@ export function TellTheOwnerEmbed({
     : `/b/${encodeURIComponent(clientId)}/embed`;
 
   return (
-    <div
-      className="telltheowner-embed"
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        width: "100%",
-        margin: "32px 0",
-        boxSizing: "border-box",
-      }}
-    >
+    <div className="flex items-center justify-center w-full">
       <iframe
         src={embedSrc}
         width={320}
@@ -36,14 +27,6 @@ export function TellTheOwnerEmbed({
         title="Leave a voice review"
         allow="microphone"
         loading="lazy"
-        referrerPolicy="strict-origin-when-cross-origin"
-        style={{
-          width: "320px",
-          height: "216px",
-          maxWidth: "100%",
-          border: 0,
-          display: "block",
-        }}
       />
     </div>
   );
