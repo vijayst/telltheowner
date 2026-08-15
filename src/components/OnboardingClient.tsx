@@ -10,6 +10,7 @@ export default function OnboardingClient() {
   const [businessName, setBusinessName] = useState("");
   const [businessAddress, setBusinessAddress] = useState("");
   const [clientId, setClientId] = useState("");
+  const [isOnlineBusiness, setIsOnlineBusiness] = useState(false);
   const [isCheckingClientId, setIsCheckingClientId] = useState(false);
   const [isClientIdAvailable, setIsClientIdAvailable] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -130,10 +131,13 @@ export default function OnboardingClient() {
       setError("Business name is required");
       return;
     }
-    if (!businessAddress.trim()) {
+    
+    // Address is only required for physical businesses
+    if (!isOnlineBusiness && !businessAddress.trim()) {
       setError("Business address is required");
       return;
     }
+    
     if (!clientId.trim()) {
       setError("Client ID is required");
       return;
@@ -163,7 +167,8 @@ export default function OnboardingClient() {
         body: JSON.stringify({
           clientId: clientId.trim(),
           businessName: businessName.trim(),
-          businessAddress: businessAddress.trim(),
+          businessAddress: isOnlineBusiness ? "" : businessAddress.trim(),
+          isOnlineBusiness: isOnlineBusiness,
         }),
       });
 
@@ -267,22 +272,54 @@ export default function OnboardingClient() {
             />
           </div>
 
+          {/* Online Business Toggle */}
+          <div className="flex items-center justify-between">
+            <div>
+              <label htmlFor="isOnlineBusiness" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Online Business
+              </label>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                Toggle on if you operate online only
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setIsOnlineBusiness(!isOnlineBusiness)}
+              className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                isOnlineBusiness ? 'bg-blue-600' : 'bg-gray-200 dark:bg-gray-600'
+              }`}
+            >
+              <span className="sr-only">Use setting</span>
+              <span
+                aria-hidden="true"
+                className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                  isOnlineBusiness ? 'translate-x-5' : 'translate-x-0'
+                }`}
+              />
+            </button>
+          </div>
+
           {/* Business Address */}
           <div>
             <label
               htmlFor="businessAddress"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              className={`block text-sm font-medium ${isOnlineBusiness ? 'text-gray-400 dark:text-gray-500' : 'text-gray-700 dark:text-gray-300'} mb-2`}
             >
-              Business Address
+              Business Address {isOnlineBusiness && '(Optional)'}
             </label>
             <input
               id="businessAddress"
               name="businessAddress"
               type="text"
-              required
+              required={!isOnlineBusiness}
               value={businessAddress}
               onChange={(e) => setBusinessAddress(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              disabled={isOnlineBusiness}
+              className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:border-gray-600 dark:text-white ${
+                isOnlineBusiness 
+                  ? 'bg-gray-100 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed' 
+                  : 'bg-white dark:bg-gray-700'
+              }`}
               placeholder="Enter your business address"
             />
           </div>

@@ -23,6 +23,7 @@ export async function GET() {
       clientId: businessUser.business.clientId,
       businessName: businessUser.business.businessName,
       businessAddress: businessUser.business.businessAddress,
+      isOnlineBusiness: businessUser.business.isOnlineBusiness || false,
     });
   } catch (error) {
     console.error("Error fetching business data:", error);
@@ -39,7 +40,7 @@ export async function PUT(request: Request) {
 
   try {
     const body = await request.json();
-    const { businessName, businessAddress, clientId } = body;
+    const { businessName, businessAddress, clientId, isOnlineBusiness } = body;
 
     // Get the current business
     const businessUser = await prisma.businessUser.findFirst({
@@ -94,8 +95,9 @@ export async function PUT(request: Request) {
       where: { clientId: currentClientId },
       data: {
         businessName: businessName || businessUser.business.businessName,
-        businessAddress: businessAddress || businessUser.business.businessAddress,
+        businessAddress: (isOnlineBusiness || businessUser.business.isOnlineBusiness) ? "" : (businessAddress || businessUser.business.businessAddress),
         clientId: clientId || currentClientId,
+        isOnlineBusiness: isOnlineBusiness !== undefined ? isOnlineBusiness : businessUser.business.isOnlineBusiness,
       },
     });
 
@@ -103,6 +105,7 @@ export async function PUT(request: Request) {
       clientId: updatedBusiness.clientId,
       businessName: updatedBusiness.businessName,
       businessAddress: updatedBusiness.businessAddress,
+      isOnlineBusiness: updatedBusiness.isOnlineBusiness || false,
     });
   } catch (error) {
     console.error("Error updating business data:", error);

@@ -19,12 +19,20 @@ export async function POST(request: NextRequest) {
     const userId = session.user.id;
 
     const body = await request.json();
-    const { clientId, businessName, businessAddress } = body;
+    const { clientId, businessName, businessAddress, isOnlineBusiness } = body;
 
     // Validate input
-    if (!clientId || !businessName || !businessAddress) {
+    if (!clientId || !businessName) {
       return NextResponse.json(
-        { error: "All fields are required" },
+        { error: "Client ID and business name are required" },
+        { status: 400 }
+      );
+    }
+    
+    // Business address is required for physical businesses, optional for online businesses
+    if (!isOnlineBusiness && !businessAddress) {
+      return NextResponse.json(
+        { error: "Business address is required for physical businesses" },
         { status: 400 }
       );
     }
@@ -65,7 +73,8 @@ export async function POST(request: NextRequest) {
         data: {
           clientId,
           businessName,
-          businessAddress,
+          businessAddress: isOnlineBusiness ? "" : businessAddress,
+          isOnlineBusiness: isOnlineBusiness || false,
         },
       });
 
