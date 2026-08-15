@@ -27,8 +27,9 @@ export default async function Home() {
         </p>
         <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
           Collect private, honest customer feedback through voice reviews.
-          Generate QR codes for your business and let customers speak their mind
-          — privately and conveniently.
+          Online businesses can embed a widget, while physical businesses can
+          generate QR codes — let customers speak their mind privately and
+          conveniently.
         </p>
         <div className="flex flex-col items-center gap-4">
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -59,7 +60,8 @@ export default async function Home() {
           Everything You Need to Gather Reviews
         </h2>
         <p className="text-xl text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-          Simple, powerful tools to help you understand your customers
+          Whether you're online or offline, we have simple, powerful tools to
+          help you understand your customers
         </p>
         <div className="grid md:grid-cols-3 gap-8">
           <div className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition">
@@ -103,11 +105,11 @@ export default async function Home() {
               </svg>
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">
-              QR Code Generation
+              QR Codes & Embed Widgets
             </h3>
             <p className="text-gray-600 leading-relaxed">
-              Get a unique QR code for your business. Print it and display it
-              for instant customer access.
+              Online businesses get an embed widget for their website. Physical
+              businesses get a printable QR code to display at their location.
             </p>
           </div>
           <div className="bg-gradient-to-br from-purple-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition">
@@ -301,11 +303,11 @@ export default async function Home() {
               2
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">
-              Get Your QR Code
+              Get Your Widget or QR Code
             </h3>
             <p className="text-gray-600">
-              Receive a unique review link and printable QR code for your
-              business location.
+              Online businesses get an embed widget. Physical businesses get a
+              printable QR code.
             </p>
           </div>
           <div className="text-center">
@@ -316,20 +318,24 @@ export default async function Home() {
               Collect Reviews
             </h3>
             <p className="text-gray-600">
-              Display the QR code. Customers scan, speak their review, and you
-              get the feedback.
+              Add the widget to your site or display the QR code. Customers speak
+              their review, and you get the feedback.
             </p>
           </div>
         </div>
       </section>
 
       {/* Voice review embed demo */}
-      <section className="container mx-auto py-20 px-6">
-        <p className="text-lg text-gray-700 mb-4 mx-auto max-w-[480px]">
-          Online business have the opportunity to collect valuable feedback
-          using a widget like the one below. Share your thoughts about our site and what we can do
-          to improve!
-        </p>
+      <section className="container mx-auto py-20 px-6 bg-gradient-to-b from-blue-50 to-indigo-50">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            Try It Yourself
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Online businesses can embed this review widget directly on their
+            website. Go ahead — leave a voice review to see how it works!
+          </p>
+        </div>
         <TellTheOwnerEmbed clientId="tell-the-owner" baseUrl="https://telltheowner.com" />
       </section>
 
@@ -418,8 +424,8 @@ export default async function Home() {
                 Easy to Share
               </h3>
               <p className="text-gray-600">
-                QR codes make it effortless for customers to leave reviews
-                anywhere.
+                Embed widgets or QR codes make it effortless for customers to
+                leave reviews anywhere.
               </p>
             </div>
           </div>
