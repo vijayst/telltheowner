@@ -79,6 +79,24 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     checkAuthAndBusiness();
   }, [router]);
 
+  // Refetch business data when navigating away from edit-business page
+  useEffect(() => {
+    if (!pathname.includes("edit-business")) {
+      const refreshBusinessData = async () => {
+        try {
+          const businessResponse = await fetch("/api/business/me");
+          if (businessResponse.ok) {
+            const businessData = await businessResponse.json();
+            setIsOnlineBusiness(businessData.isOnlineBusiness || false);
+          }
+        } catch (error) {
+          console.error("Failed to refresh business data:", error);
+        }
+      };
+      refreshBusinessData();
+    }
+  }, [pathname]);
+
   const handleSignOut = async () => {
     setSigningOut(true);
     try {
