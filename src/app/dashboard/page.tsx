@@ -7,8 +7,27 @@ export default function DashboardPage() {
   const router = useRouter();
 
   useEffect(() => {
-    // Redirect to QR Code page by default
-    router.replace("/dashboard/qr-code");
+    // Fetch business data and redirect based on business type
+    async function checkBusinessType() {
+      try {
+        const response = await fetch("/api/business/me");
+        if (response.ok) {
+          const data = await response.json();
+          // Redirect to embed-widget for online businesses, qr-code for physical businesses
+          const targetPage = data.isOnlineBusiness ? "/dashboard/embed-widget" : "/dashboard/qr-code";
+          router.replace(targetPage);
+        } else {
+          // If no business found, redirect to onboarding
+          router.replace("/onboarding");
+        }
+      } catch (error) {
+        console.error("Error checking business type:", error);
+        // Fallback to QR code page on error
+        router.replace("/dashboard/qr-code");
+      }
+    }
+
+    checkBusinessType();
   }, [router]);
 
   return (
