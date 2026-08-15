@@ -169,16 +169,17 @@ export default function EditBusinessPage() {
       }
 
       const data = await response.json();
-      setSuccess("Business information updated successfully!");
+      setSuccess(`Business information updated successfully! Redirecting to ${data.isOnlineBusiness ? "Embed Widget" : "QR Code"}...`);
       setBusiness(data);
       setOriginalClientId(data.clientId);
       
       // Check reviews for the new URL
       await checkReviews(data.clientId);
       
-      // Navigate back to QR Code page after a brief delay
+      // Navigate to appropriate page based on online business status
       setTimeout(() => {
-        router.push("/dashboard/qr-code");
+        const targetPage = data.isOnlineBusiness ? "/dashboard/embed-widget" : "/dashboard/qr-code";
+        router.push(targetPage);
       }, 1500);
     } catch (err) {
       setError(err instanceof Error ? err.message : "An unexpected error occurred");
@@ -199,11 +200,11 @@ export default function EditBusinessPage() {
     <div className="max-w-2xl mx-auto">
       <div className="mb-6">
         <button
-          onClick={() => router.push("/dashboard/qr-code")}
+          onClick={() => router.push(business?.isOnlineBusiness ? "/dashboard/embed-widget" : "/dashboard/qr-code")}
           className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
-          Back to QR Code
+          Back to {business?.isOnlineBusiness ? "Embed Widget" : "QR Code"}
           </button>
         </div>
 
