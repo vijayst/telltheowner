@@ -48,7 +48,7 @@ export default async function Home() {
           </div>
           {!isAuthenticated && (
             <p className="text-sm text-gray-600 mt-2">
-              Free for the first 100 customers for 1 year
+              Completely free until December 2026 — pay as you go after
             </p>
           )}
         </div>
@@ -455,6 +455,53 @@ export default async function Home() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Pricing Teaser Section */}
+      <section className="container mx-auto px-6 py-20 bg-gradient-to-b from-blue-50 to-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            Simple, Transparent Pricing
+          </h2>
+          <p className="text-xl text-gray-600 mb-12">
+            No hidden fees. No commitments. Just pay for what you use.
+          </p>
+          <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-green-200">
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <div className="bg-green-500 text-white px-6 py-3 rounded-full font-bold text-xl">
+                100% FREE
+              </div>
+              <span className="text-2xl font-bold text-gray-900">until December 2026</span>
+            </div>
+            <p className="text-gray-600 mb-6">
+              Then pay as you go: $1 per 10 reviews
+            </p>
+            <div className="bg-green-50 rounded-xl p-4">
+              <p className="text-green-800 font-medium">
+                💡 If you get fewer than 10 reviews in a month, you pay $0
+              </p>
+            </div>
+          </div>
+          <a
+            href="/pricing"
+            className="mt-8 text-blue-600 hover:text-blue-700 font-semibold text-lg inline-flex items-center gap-2 transition"
+          >
+            View full pricing details
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </a>
         </div>
       </section>
 

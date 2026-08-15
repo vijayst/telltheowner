@@ -11,6 +11,7 @@ export default async function Navigation() {
         <div className="hidden md:flex items-center gap-6">
           <a href="/how-it-works" className="text-gray-600 hover:text-blue-600 transition">How It Works</a>
           <a href="/about" className="text-gray-600 hover:text-blue-600 transition">About</a>
+          <a href="/pricing" className="text-gray-600 hover:text-blue-600 transition">Pricing</a>
           {isAuthenticated ? (
             <>
               <a

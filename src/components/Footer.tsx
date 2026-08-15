@@ -40,6 +40,11 @@ export default function Footer() {
                     How It Works
                   </a>
                 </li>
+                <li>
+                  <a href="/pricing" className="hover:text-blue-500 transition">
+                    Pricing
+                  </a>
+                </li>
               </ul>
             </div>
 

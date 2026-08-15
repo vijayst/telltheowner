@@ -251,6 +251,60 @@ export default function About() {
         </div>
       </section>
 
+      {/* Pricing Section */}
+      <section className="container mx-auto px-6 py-16 max-w-4xl">
+        <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">
+          Our Pricing Philosophy
+        </h2>
+
+        <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl p-8 shadow-xl mb-8">
+          <div className="text-white text-center">
+            <div className="text-3xl font-bold mb-2">Completely Free Until December 2026</div>
+            <p className="text-green-100 text-lg">
+              We're committed to helping businesses succeed during our launch phase
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl p-8 shadow-lg mb-8">
+          <h3 className="text-2xl font-bold text-gray-900 mb-4">Pay As You Go</h3>
+          <p className="text-gray-600 mb-6">
+            After December 2026, we're keeping things simple with transparent,
+            flexible pricing that only charges you for what you use.
+          </p>
+          
+          <div className="bg-blue-50 rounded-xl p-6">
+            <div className="text-2xl font-bold text-blue-600 mb-2">$1 per 10 reviews</div>
+            <p className="text-gray-700">
+              And here's the best part: if your business receives fewer than 10
+              reviews in a month, you pay absolutely nothing for that month.
+            </p>
+          </div>
+        </div>
+
+        <div className="text-center">
+          <a
+            href="/pricing"
+            className="text-blue-600 hover:text-blue-700 font-semibold text-lg inline-flex items-center gap-2 transition"
+          >
+            View full pricing details
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </a>
+        </div>
+      </section>
+
       {/* Feedback QR Code Section */}
       <section>
         <FeedbackQRCode />
