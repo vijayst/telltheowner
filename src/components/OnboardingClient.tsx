@@ -20,15 +20,6 @@ export default function OnboardingClient() {
 
   const reviewUrl = clientId ? `https://telltheowner.com/b/${clientId}/review` : "";
 
-  // Generate unique client ID on component mount
-  useEffect(() => {
-    if (!clientId && businessName && businessAddress) {
-      const newClientId = generateClientId();
-      setClientId(newClientId);
-      setIsClientIdAvailable(true);
-    }
-  }, [businessName, businessAddress]);
-
   // Generate QR code URL when review URL changes
   useEffect(() => {
     if (reviewUrl) {
@@ -41,8 +32,8 @@ export default function OnboardingClient() {
   function generateClientId(): string {
     // Generate client ID in format: businessName-businessAddress
     // Rules: remove multiple spaces, replace spaces with hyphens, convert to lowercase
-    if (!businessName || !businessAddress) {
-      // Fallback if fields are missing
+    if (!businessName) {
+      // Fallback if business name is missing
       return `business-${Date.now()}`;
     }
 
@@ -52,6 +43,11 @@ export default function OnboardingClient() {
       .trim()
       .replace(/\s/g, "-") // Replace spaces with hyphens
       .toLowerCase();
+
+    // If address is not provided, return just the business name
+    if (!businessAddress) {
+      return sanitizedBusinessName;
+    }
 
     const sanitizedAddress = businessAddress
       .replace(/[^a-zA-Z0-9\s-]/g, "") // Remove special characters except hyphens
@@ -66,14 +62,27 @@ export default function OnboardingClient() {
     return `${sanitizedBusinessName}-${shortAddress}`;
   }
 
-  // Update client ID suggestion when business name and address change
-  useEffect(() => {
-    if (businessName && businessAddress && !clientId) {
+  async function handleBusinessNameBlur() {
+    if (businessName.trim()) {
       const newClientId = generateClientId();
       setClientId(newClientId);
-      setIsClientIdAvailable(true);
+      setIsCheckingClientId(true);
+      const available = await checkClientIdAvailability(newClientId);
+      setIsClientIdAvailable(available);
+      setIsCheckingClientId(false);
     }
-  }, [businessName, businessAddress, clientId]);
+  }
+
+  async function handleBusinessAddressBlur() {
+    if (businessName.trim() && businessAddress.trim()) {
+      const newClientId = generateClientId();
+      setClientId(newClientId);
+      setIsCheckingClientId(true);
+      const available = await checkClientIdAvailability(newClientId);
+      setIsClientIdAvailable(available);
+      setIsCheckingClientId(false);
+    }
+  }
 
   async function checkClientIdAvailability(id: string): Promise<boolean> {
     try {
@@ -267,6 +276,7 @@ export default function OnboardingClient() {
               required
               value={businessName}
               onChange={(e) => setBusinessName(e.target.value)}
+              onBlur={handleBusinessNameBlur}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900"
               placeholder="Enter your business name"
             />
@@ -314,6 +324,7 @@ export default function OnboardingClient() {
               required={!isOnlineBusiness}
               value={businessAddress}
               onChange={(e) => setBusinessAddress(e.target.value)}
+              onBlur={handleBusinessAddressBlur}
               disabled={isOnlineBusiness}
               className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 ${
                 isOnlineBusiness 
@@ -395,8 +406,8 @@ export default function OnboardingClient() {
             </div>
           )}
 
-          {/* QR Code */}
-          {qrCodeUrl && (
+          {/* QR Code or Embed Widget */}
+          {qrCodeUrl && !isOnlineBusiness && (
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 QR Code
@@ -411,6 +422,34 @@ export default function OnboardingClient() {
               </div>
               <p className="mt-2 text-xs text-gray-500 text-center">
                 Customers can scan this code to leave a review
+              </p>
+            </div>
+          )}
+
+          {/* Embed Widget for Online Businesses */}
+          {qrCodeUrl && isOnlineBusiness && clientId && (
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Review Widget
+              </label>
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                <p className="text-sm text-blue-800">
+                  Since you're an online business, embed this widget on your website to collect voice reviews!
+                </p>
+              </div>
+              
+              {/* Widget Preview */}
+              <div className="flex justify-center p-4 bg-gray-100 rounded-lg border-2 border-dashed border-gray-300">
+                <iframe
+                  src={`/b/${clientId}/embed`}
+                  width="320"
+                  height="216"
+                  className="rounded-lg shadow-lg"
+                  title="Voice Review Widget Preview"
+                />
+              </div>
+              <p className="mt-2 text-xs text-gray-500 text-center">
+                This is how the widget will appear on your website
               </p>
             </div>
           )}
