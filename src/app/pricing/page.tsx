@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 export const metadata = {
   title: "Pricing - Tell the Owner",
   description:
-    "Simple, transparent pricing for Tell the Owner. Free until December 2026, then pay as you go.",
+    "Tell the Owner is a flat $10 a month. Your first month is free.",
 };
 
 export default function Pricing() {
@@ -20,12 +20,11 @@ export default function Pricing() {
           <span className="text-blue-600">Pricing</span>
         </h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-          No hidden fees. No commitments. Just pay for what you use. We're
-          completely free until December 2026.
+          One flat price. Unlimited reviews. Your first month is free.
         </p>
       </section>
 
-      {/* Free Period Banner */}
+      {/* First Month Free Banner */}
       <section className="container mx-auto px-6 py-8">
         <div className="max-w-4xl mx-auto bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl p-8 shadow-2xl">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
@@ -38,142 +37,81 @@ export default function Pricing() {
                 >
                   <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                 </svg>
-                <span className="text-3xl font-bold">100% Free</span>
+                <span className="text-3xl font-bold">First Month Free</span>
               </div>
               <p className="text-lg text-green-100">
-                Use Tell the Owner completely free until December 2026
+                Try Tell the Owner with every feature included
               </p>
             </div>
-            <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-white">
-              <p className="text-sm font-medium">Launch Offer</p>
-              <p className="text-2xl font-bold">Ends Dec 2026</p>
+            <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 text-white text-center">
+              <p className="text-sm font-medium">Then</p>
+              <p className="text-2xl font-bold">$10/month</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pricing Cards */}
+      {/* Pricing Card */}
       <section className="container mx-auto px-6 py-20">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Free Period Card */}
-            <div className="bg-white rounded-3xl p-8 shadow-xl border-2 border-green-200 relative overflow-hidden">
-              <div className="absolute top-0 right-0 bg-green-500 text-white px-6 py-2 rounded-bl-2xl font-semibold">
-                Current Offer
-              </div>
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  Free Period
-                </h3>
-                <p className="text-gray-600">
-                  Perfect time to try Tell the Owner risk-free
-                </p>
-              </div>
-              
-              <div className="mb-8">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-5xl font-bold text-green-600">$0</span>
-                  <span className="text-gray-500 text-xl">until Dec 2026</span>
-                </div>
-                <p className="text-sm text-gray-500 mt-2">No credit card required</p>
-              </div>
-
-              <ul className="space-y-4 mb-8">
-                {[
-                  "Unlimited voice reviews",
-                  "AI-powered transcription",
-                  "QR code generation",
-                  "Embed widget for websites",
-                  "Private review dashboard",
-                  "Customer feedback analytics",
-                  "No limits on storage",
-                ].map((feature, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <svg
-                      className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    <span className="text-gray-700">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="bg-green-50 rounded-xl p-4">
-                <p className="text-sm text-green-800 text-center font-medium">
-                  ✨ All features included, zero cost
-                </p>
-              </div>
+        <div className="max-w-xl mx-auto">
+          <div className="bg-white rounded-3xl p-8 shadow-xl border-2 border-blue-200 relative overflow-hidden">
+            <div className="absolute top-0 right-0 bg-green-500 text-white px-6 py-2 rounded-bl-2xl font-semibold">
+              First month free
+            </div>
+            <div className="mb-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                Tell the Owner
+              </h3>
+              <p className="text-gray-600">
+                Unlimited voice reviews for one flat monthly price
+              </p>
             </div>
 
-            {/* Pay As You Go Card */}
-            <div className="bg-white rounded-3xl p-8 shadow-xl border-2 border-blue-200">
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  Pay As You Go
-                </h3>
-                <p className="text-gray-600">
-                  Flexible pricing that scales with your business
-                </p>
+            <div className="mb-8">
+              <div className="flex items-baseline gap-2">
+                <span className="text-5xl font-bold text-blue-600">$10</span>
+                <span className="text-gray-500 text-xl">/ month</span>
               </div>
-              
-              <div className="mb-8">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-5xl font-bold text-blue-600">$1</span>
-                  <span className="text-gray-500 text-xl">per 10 reviews</span>
-                </div>
-                <p className="text-sm text-gray-500 mt-2">Starting Jan 2027</p>
-              </div>
-
-              <div className="bg-blue-50 rounded-xl p-4 mb-6">
-                <p className="text-sm text-blue-800 text-center font-medium">
-                  💡 If you get fewer than 10 reviews in a month, you pay $0
-                </p>
-              </div>
-
-              <ul className="space-y-4 mb-8">
-                {[
-                  "Only pay for reviews you receive",
-                  "No monthly minimums or commitments",
-                  "Automatic billing only when you reach 10 reviews",
-                  "All features from free period included",
-                  "Premium support included",
-                  "Unlimited business locations",
-                  "Advanced analytics and insights",
-                ].map((feature, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <svg
-                      className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    <span className="text-gray-700">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="text-center">
-                <p className="text-sm text-gray-500">
-                  Example: 25 reviews/month = $2.50/month
-                </p>
-              </div>
+              <p className="text-sm text-gray-500 mt-2">
+                After your free first month
+              </p>
             </div>
+
+            <ul className="space-y-4 mb-8">
+              {[
+                "Unlimited voice reviews",
+                "AI-powered transcription",
+                "QR code generation",
+                "Embed widget for websites",
+                "Private review dashboard",
+                "No per-review or usage charges",
+                "Cancel anytime",
+              ].map((feature) => (
+                <li key={feature} className="flex items-start gap-3">
+                  <svg
+                    className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span className="text-gray-700">{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href="/login"
+              className="block w-full text-center bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition"
+            >
+              Start your free month
+            </a>
           </div>
         </div>
       </section>
@@ -185,12 +123,12 @@ export default function Pricing() {
             How Pricing Works
           </h2>
           <p className="text-xl text-gray-600 text-center mb-12">
-            Simple, transparent, and fair
+            One price, no usage meters
           </p>
 
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
                   className="w-8 h-8 text-white"
                   fill="none"
@@ -206,15 +144,15 @@ export default function Pricing() {
                 </svg>
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">
-                Count Your Reviews
+                Start Free
               </h3>
               <p className="text-gray-600">
-                We count all voice reviews you receive each calendar month
+                Your first month is free, with every feature included
               </p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
                   className="w-8 h-8 text-white"
                   fill="none"
@@ -230,10 +168,10 @@ export default function Pricing() {
                 </svg>
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">
-                Calculate Cost
+                Flat $10 a Month
               </h3>
               <p className="text-gray-600">
-                Every 10 reviews = $1. Fewer than 10 reviews = $0
+                After that, it&apos;s $10 a month no matter how many reviews you get
               </p>
             </div>
 
@@ -254,10 +192,10 @@ export default function Pricing() {
                 </svg>
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">
-                Pay Only When Needed
+                Cancel Anytime
               </h3>
               <p className="text-gray-600">
-                No automatic charges. You're billed only when you reach 10 reviews
+                No contracts. Stop whenever you want and you won&apos;t be billed again
               </p>
             </div>
           </div>
@@ -274,38 +212,33 @@ export default function Pricing() {
           <div className="space-y-6">
             {[
               {
-                question: "What happens after December 2026?",
+                question: "How much does Tell the Owner cost?",
                 answer:
-                  "Starting January 2027, our pay-as-you-go pricing begins. You'll only be charged $1 for every 10 reviews you receive in a month. If you receive fewer than 10 reviews, there's no charge for that month.",
+                  "It's a flat $10 a month. There are no per-review charges and no usage tiers. Your first month is free.",
               },
               {
-                question: "Is there a monthly subscription fee?",
+                question: "Is the first month really free?",
                 answer:
-                  "No! We don't have monthly subscriptions. You pay only for the reviews you actually receive. It's truly pay-as-you-go.",
+                  "Yes. You get a full month of Tell the Owner at no charge. After that, the plan is $10 a month.",
               },
               {
-                question: "What if I get zero reviews in a month?",
+                question: "What if I get a lot of reviews?",
                 answer:
-                  "If your business receives fewer than 10 reviews in a month, you pay $0 for that entire month. We only charge when you reach the 10-review threshold.",
-              },
-              {
-                question: "Do I need to provide payment information now?",
-                answer:
-                  "Nope! During our free period (until December 2026), you don't need to provide any payment information. We'll let you know when it's time to add payment details.",
+                  "The price stays $10 a month. Unlimited voice reviews are included, so a busy month costs the same as a quiet one.",
               },
               {
                 question: "Can I cancel anytime?",
                 answer:
-                  "Absolutely. Since we don't have subscriptions, there's nothing to cancel. Just stop using the service whenever you want. If you're already in the paid period, you can remove your payment details anytime.",
+                  "Yes. There is no contract. Cancel whenever you want and billing stops.",
               },
               {
                 question: "What counts as a review?",
                 answer:
-                  "A review is counted when a customer successfully completes a voice review through your QR code or embed widget. This includes the voice recording and AI transcription.",
+                  "A review is counted when a customer successfully completes a voice review through your QR code or embed widget. This includes the voice recording and AI transcription. Reviews are unlimited on the $10 plan.",
               },
-            ].map((faq, index) => (
+            ].map((faq) => (
               <div
-                key={index}
+                key={faq.question}
                 className="bg-white rounded-xl p-6 shadow-md border border-gray-200"
               >
                 <h3 className="text-lg font-bold text-gray-900 mb-2">
@@ -322,11 +255,10 @@ export default function Pricing() {
       <section className="container mx-auto px-6 py-20">
         <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-3xl p-12 text-center shadow-2xl">
           <h2 className="text-4xl font-bold text-white mb-4">
-            Start Free Today
+            Start Your Free Month
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Join thousands of businesses gathering honest customer feedback.
-            Completely free until December 2026.
+            Then $10 a month for unlimited reviews. No usage charges.
           </p>
           <a
             href="/login"

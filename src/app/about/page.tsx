@@ -259,25 +259,25 @@ export default function About() {
 
         <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl p-8 shadow-xl mb-8">
           <div className="text-white text-center">
-            <div className="text-3xl font-bold mb-2">Completely Free Until December 2026</div>
+            <div className="text-3xl font-bold mb-2">First Month Free</div>
             <p className="text-green-100 text-lg">
-              We're committed to helping businesses succeed during our launch phase
+              Try Tell the Owner with every feature included
             </p>
           </div>
         </div>
 
         <div className="bg-white rounded-2xl p-8 shadow-lg mb-8">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">Pay As You Go</h3>
+          <h3 className="text-2xl font-bold text-gray-900 mb-4">Flat $10 a Month</h3>
           <p className="text-gray-600 mb-6">
-            After December 2026, we're keeping things simple with transparent,
-            flexible pricing that only charges you for what you use.
+            After your free month, Tell the Owner is a flat $10 a month.
+            Unlimited reviews, with no usage charges.
           </p>
           
           <div className="bg-blue-50 rounded-xl p-6">
-            <div className="text-2xl font-bold text-blue-600 mb-2">$1 per 10 reviews</div>
+            <div className="text-2xl font-bold text-blue-600 mb-2">$10/month</div>
             <p className="text-gray-700">
-              And here's the best part: if your business receives fewer than 10
-              reviews in a month, you pay absolutely nothing for that month.
+              A busy month costs the same as a quiet one. There are no
+              per-review fees.
             </p>
           </div>
         </div>

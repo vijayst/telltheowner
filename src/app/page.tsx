@@ -48,7 +48,7 @@ export default async function Home() {
           </div>
           {!isAuthenticated && (
             <p className="text-sm text-gray-600 mt-2">
-              Completely free until December 2026 — pay as you go after
+              First month free, then $10/month
             </p>
           )}
         </div>
@@ -465,21 +465,21 @@ export default async function Home() {
             Simple, Transparent Pricing
           </h2>
           <p className="text-xl text-gray-600 mb-12">
-            No hidden fees. No commitments. Just pay for what you use.
+            One flat price. Unlimited reviews. Your first month is free.
           </p>
           <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-green-200">
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="bg-green-500 text-white px-6 py-3 rounded-full font-bold text-xl">
-                100% FREE
+                FIRST MONTH FREE
               </div>
-              <span className="text-2xl font-bold text-gray-900">until December 2026</span>
+              <span className="text-2xl font-bold text-gray-900">then $10/month</span>
             </div>
             <p className="text-gray-600 mb-6">
-              Then pay as you go: $1 per 10 reviews
+              Flat $10 a month for unlimited voice reviews
             </p>
             <div className="bg-green-50 rounded-xl p-4">
               <p className="text-green-800 font-medium">
-                💡 If you get fewer than 10 reviews in a month, you pay $0
+                No per-review charges. A busy month costs the same as a quiet one.
               </p>
             </div>
           </div>
