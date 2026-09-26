@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { notifyOwnersOfReview } from "@/lib/email";
 import Groq from "groq-sdk";
 
 const groq = new Groq({
@@ -24,6 +25,12 @@ export async function POST(
     // Check if business exists
     const business = await prisma.business.findUnique({
       where: { clientId },
+      include: {
+        businessUsers: {
+          where: { role: "owner" },
+          include: { user: { select: { email: true } } },
+        },
+      },
     });
 
     if (!business) {
@@ -151,6 +158,20 @@ export async function POST(
           reviewCount: 1,
         },
       });
+    }
+
+    const ownerEmails = business.businessUsers
+      .map((businessUser) => businessUser.user.email)
+      .filter((email): email is string => Boolean(email));
+
+    try {
+      await notifyOwnersOfReview({
+        ownerEmails,
+        businessName: business.businessName,
+        reviewText: review.text,
+      });
+    } catch (emailError) {
+      console.error("Failed to notify business owners:", emailError);
     }
 
     // Create response and set HttpOnly cookie
