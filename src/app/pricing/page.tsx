@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { PricingCheckout } from "@/components/pricing/PricingCheckout";
 import { countryCodeFromRequestHeader } from "@/lib/paddle/country";
 import { auth } from "@/auth";
+import { prisma } from "@/lib/prisma";
 import { headers } from "next/headers";
 
 export const metadata = {
@@ -18,6 +19,12 @@ export default async function Pricing() {
   );
   const session = await auth();
   const email = session?.user?.email || undefined;
+  const businessUser = session?.user?.id
+    ? await prisma.businessUser.findFirst({
+        where: { userId: session.user.id, role: "owner" },
+        select: { businessId: true },
+      })
+    : null;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
@@ -36,7 +43,11 @@ export default async function Pricing() {
       </section>
 
       <section className="container mx-auto px-6 pb-20">
-        <PricingCheckout countryCode={countryCode} email={email} />
+        <PricingCheckout
+          countryCode={countryCode}
+          email={email}
+          clientId={businessUser?.businessId}
+        />
       </section>
 
       <section className="container mx-auto px-6 py-20 bg-white">

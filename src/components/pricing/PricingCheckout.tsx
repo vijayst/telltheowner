@@ -15,9 +15,11 @@ type FormattedTotals = {
 export function PricingCheckout({
   countryCode,
   email,
+  clientId,
 }: {
   countryCode?: string;
   email?: string;
+  clientId?: string;
 }) {
   const environment = getPaddleEnvironment();
   const token = getPaddleClientToken();
@@ -95,6 +97,7 @@ export function PricingCheckout({
         variant: "one-page",
         successUrl: `${window.location.origin}/welcome`,
       },
+      ...(clientId ? { customData: { clientId } } : {}),
       ...(email
         ? {
             customer: {
