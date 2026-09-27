@@ -12,6 +12,7 @@ import {
   Globe,
   CreditCard,
 } from "lucide-react";
+import { openCookieSettings } from "@/lib/consent";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -213,6 +214,13 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               </p>
             </div>
             <button
+              type="button"
+              onClick={openCookieSettings}
+              className="w-full mb-3 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              Cookie settings
+            </button>
+            <button
               onClick={handleSignOut}
               disabled={signingOut}
               className="w-full flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
@@ -334,6 +342,13 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 {userEmail}
               </p>
             </div>
+            <button
+              type="button"
+              onClick={openCookieSettings}
+              className="w-full mb-3 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              Cookie settings
+            </button>
             <button
               onClick={handleSignOut}
               disabled={signingOut}

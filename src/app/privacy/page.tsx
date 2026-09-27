@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer";
+import { CookieSettingsButton } from "@/components/CookieConsent";
 
 export const metadata = {
   title: "Privacy Policy - Tell the Owner",
@@ -20,7 +21,7 @@ export default function Privacy() {
         <h1 className="text-4xl font-bold text-gray-900 mb-8">Privacy Policy</h1>
         
         <p className="text-gray-600 mb-8 leading-relaxed">
-          Last updated: May 24, 2026
+          Last updated: September 26, 2026
         </p>
 
         <section className="mb-8">
@@ -47,6 +48,7 @@ export default function Privacy() {
             <li>Voice recordings of reviews</li>
             <li>Transcribed text of voice reviews</li>
             <li>Review submission timestamp</li>
+            <li>A browser identifier, stored on the device and with the review, so the same browser cannot submit repeat reviews for one business</li>
           </ul>
         </section>
 
@@ -110,16 +112,58 @@ export default function Privacy() {
           </ul>
         </section>
 
+        <section id="cookies" className="mb-8 scroll-mt-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Cookies and similar technologies</h2>
+          <p className="text-gray-600 leading-relaxed mb-4">
+            We use cookies and local storage to run the service. Analytics cookies are optional and are not set until you allow them.
+          </p>
+
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">Necessary</h3>
+          <ul className="list-disc list-inside text-gray-600 space-y-2 mb-4">
+            <li>
+              <strong>Sign-in session</strong> (<code>authjs.session-token</code>, or <code>__Secure-authjs.session-token</code> on HTTPS). Keeps you signed in. Lasts up to 30 days.
+            </li>
+            <li>
+              <strong>Sign-in flow</strong> (<code>authjs.csrf-token</code> and <code>authjs.callback-url</code>). Used only while you sign in with a magic link.
+            </li>
+            <li>
+              <strong>Review limit</strong> (<code>review_submitted_&#123;business id&#125;</code>). Remembers that this browser already left a review for that business. Lasts 1 day.
+            </li>
+            <li>
+              <strong>Browser identifier</strong> (<code>telltheowner_fingerprint</code> in local storage). Created when you leave a review and sent with that review. Stays on the device until you clear site data.
+            </li>
+            <li>
+              <strong>Cookie choice</strong> (<code>tto_consent</code>). Remembers whether you allowed analytics. Lasts 6 months.
+            </li>
+            <li>
+              <strong>Paddle</strong>. While checkout is open, Paddle may set cookies on its own domain to take payment. Those cookies are required to complete a subscription.
+            </li>
+          </ul>
+
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">Optional analytics</h3>
+          <ul className="list-disc list-inside text-gray-600 space-y-2 mb-4">
+            <li>
+              <strong>Google Analytics</strong> (<code>_ga</code> and <code>_ga_EGRF1EZ2YE</code>). Measures how the site is used. Set only after you choose Allow analytics. Google keeps them for up to 2 years.
+            </li>
+          </ul>
+          <p className="text-gray-600 leading-relaxed">
+            You can change this choice at any time from Cookie settings in the site footer, or from the button below.
+          </p>
+          <CookieSettingsButton className="mt-4 inline-block bg-white text-blue-600 px-5 py-2.5 rounded-full font-medium border border-blue-600 hover:bg-blue-50 transition">
+            Update cookie choice
+          </CookieSettingsButton>
+        </section>
+
         <section className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Third-Party Services</h2>
           <p className="text-gray-600 leading-relaxed mb-4">
             We may use third-party services to operate our platform, including:
           </p>
           <ul className="list-disc list-inside text-gray-600 space-y-2">
-            <li>Payment processors for subscription billing</li>
+            <li>Paddle, for subscription billing</li>
             <li>Cloud storage and hosting providers</li>
             <li>Speech recognition and AI services</li>
-            <li>Analytics tools to improve our service</li>
+            <li>Google Analytics, only after you allow analytics cookies</li>
           </ul>
           <p className="text-gray-600 leading-relaxed mt-4">
             These third parties have access to your information only to perform services on our behalf 

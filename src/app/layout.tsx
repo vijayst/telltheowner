@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Fraunces, Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import { ConditionalServiceWorker } from "@/components/ConditionalServiceWorker";
+import { CookieConsent } from "@/components/CookieConsent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,20 +42,9 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json"></link>
       </head>
       <body className="min-h-full flex flex-col">
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-EGRF1EZ2YE"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-EGRF1EZ2YE');
-          `}
-        </Script>
         <ConditionalServiceWorker />
         {children}
+        <CookieConsent />
       </body>
     </html>
   );
