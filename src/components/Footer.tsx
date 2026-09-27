@@ -1,3 +1,5 @@
+import { CookieSettingsButton } from "@/components/CookieConsent";
+
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300 py-8">
@@ -60,6 +62,11 @@ export default function Footer() {
                   <a href="/terms" className="hover:text-blue-500 transition">
                     Terms of Service
                   </a>
+                </li>
+                <li>
+                  <CookieSettingsButton className="hover:text-blue-500 transition">
+                    Cookie settings
+                  </CookieSettingsButton>
                 </li>
               </ul>
             </div>

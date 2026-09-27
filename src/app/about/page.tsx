@@ -312,9 +312,10 @@ export default function About() {
           <p className="text-gray-600 leading-relaxed mb-4">
             telltheowner.com is built by Vijay Thirugnanam, a passionate
             entrepreneur and software engineer with a vision to improve the way
-            businesses and customers communicate.
+            businesses and customers communicate. 
           </p>
           <p className="text-gray-600 leading-relaxed">
+            The legal business name is SoloPivot Labs Inc. federally registered in Canada.
             We're headquartered in Canada and serve businesses
             worldwide. Every day, we're working to make telltheowner.com better,
             more accessible, and more valuable for everyone who uses it.
