@@ -48,7 +48,7 @@ export default async function Home() {
           </div>
           {!isAuthenticated && (
             <p className="text-sm text-gray-600 mt-2">
-              First month free, then $10/month
+              First month free, then monthly Pro
             </p>
           )}
         </div>
@@ -465,23 +465,18 @@ export default async function Home() {
             Simple, Transparent Pricing
           </h2>
           <p className="text-xl text-gray-600 mb-12">
-            One flat price. Unlimited reviews. Your first month is free.
+            Monthly Pro, priced for your country. Your first month is free.
           </p>
           <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-green-200">
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="bg-green-500 text-white px-6 py-3 rounded-full font-bold text-xl">
                 FIRST MONTH FREE
               </div>
-              <span className="text-2xl font-bold text-gray-900">then $10/month</span>
+              <span className="text-2xl font-bold text-gray-900">then monthly Pro</span>
             </div>
             <p className="text-gray-600 mb-6">
-              Flat $10 a month for unlimited voice reviews
+              Unlimited voice reviews. The price on the pricing page is localized for your country.
             </p>
-            <div className="bg-green-50 rounded-xl p-4">
-              <p className="text-green-800 font-medium">
-                No per-review charges. A busy month costs the same as a quiet one.
-              </p>
-            </div>
           </div>
           <a
             href="/pricing"
