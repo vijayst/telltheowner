@@ -10,6 +10,7 @@ import {
   X,
   Settings,
   Globe,
+  CreditCard,
 } from "lucide-react";
 
 interface DashboardLayoutProps {
@@ -27,13 +28,15 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const mobileSidebarRef = useRef<HTMLDivElement | null>(null);
 
   // Determine current view from pathname
-  const currentView = pathname.includes("review-wall")
-    ? "review-wall"
-    : pathname.includes("edit-business")
-      ? "edit-business"
-      : pathname.includes("embed-widget")
-        ? "embed-widget"
-        : "qr-code";
+  const currentView = pathname.includes("billing")
+    ? "billing"
+    : pathname.includes("review-wall")
+      ? "review-wall"
+      : pathname.includes("edit-business")
+        ? "edit-business"
+        : pathname.includes("embed-widget")
+          ? "embed-widget"
+          : "qr-code";
 
   useEffect(() => {
     const checkAuthAndBusiness = async () => {
@@ -111,7 +114,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   };
 
   const handleNavigation = (
-    view: "qr-code" | "review-wall" | "edit-business" | "embed-widget",
+    view: "qr-code" | "review-wall" | "edit-business" | "embed-widget" | "billing",
   ) => {
     setSidebarOpen(false);
     router.push(`/dashboard/${view}`);
@@ -184,6 +187,18 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             >
               <Settings className="w-5 h-5 mr-3" />
               Edit Business
+            </button>
+
+            <button
+              onClick={() => handleNavigation("billing")}
+              className={`w-full flex items-center px-4 py-3 rounded-lg transition-colors ${
+                currentView === "billing"
+                  ? "bg-blue-50 text-blue-600 font-medium"
+                  : "text-gray-700 hover:bg-gray-100"
+              }`}
+            >
+              <CreditCard className="w-5 h-5 mr-3" />
+              Billing
             </button>
           </nav>
 
@@ -295,6 +310,18 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             >
               <Settings className="w-5 h-5 mr-3" />
               Edit Business
+            </button>
+
+            <button
+              onClick={() => handleNavigation("billing")}
+              className={`w-full flex items-center px-4 py-3 rounded-lg transition-colors ${
+                currentView === "billing"
+                  ? "bg-blue-50 text-blue-600 font-medium"
+                  : "text-gray-700 hover:bg-gray-100"
+              }`}
+            >
+              <CreditCard className="w-5 h-5 mr-3" />
+              Billing
             </button>
           </nav>
 

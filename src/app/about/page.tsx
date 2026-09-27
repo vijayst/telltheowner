@@ -267,19 +267,11 @@ export default function About() {
         </div>
 
         <div className="bg-white rounded-2xl p-8 shadow-lg mb-8">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">Flat $10 a Month</h3>
+          <h3 className="text-2xl font-bold text-gray-900 mb-4">Monthly Pro</h3>
           <p className="text-gray-600 mb-6">
-            After your free month, Tell the Owner is a flat $10 a month.
-            Unlimited reviews, with no usage charges.
+            After your free month, Pro is a monthly subscription. The price is
+            localized for your country, with no per-review charges.
           </p>
-          
-          <div className="bg-blue-50 rounded-xl p-6">
-            <div className="text-2xl font-bold text-blue-600 mb-2">$10/month</div>
-            <p className="text-gray-700">
-              A busy month costs the same as a quiet one. There are no
-              per-review fees.
-            </p>
-          </div>
         </div>
 
         <div className="text-center">

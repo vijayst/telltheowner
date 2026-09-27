@@ -17,11 +17,29 @@ model Business {
   businessName   String
   businessAddress String
   isOnlineBusiness Boolean    @default(false)
+  paddleCustomerId String?     @unique
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @default(now())
   businessUsers  BusinessUser[]
   reviews        Review[]
   customerFingerprints CustomerFingerprint[]
+  subscriptions  Subscription[]
+}
+
+model Subscription {
+  subscriptionId        String    @id
+  clientId              String
+  status                String
+  priceId               String
+  productId             String
+  scheduledChangeAction String?
+  scheduledChangeAt     DateTime?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @default(now())
+
+  business Business @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
+
+  @@index([clientId])
 }
 
 model BusinessUser {
