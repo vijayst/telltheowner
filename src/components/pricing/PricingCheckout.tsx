@@ -16,10 +16,16 @@ export function PricingCheckout({
   countryCode,
   email,
   clientId,
+  isLoggedIn = false,
+  checkout = false,
+  variant = "card",
 }: {
   countryCode?: string;
   email?: string;
   clientId?: string;
+  isLoggedIn?: boolean;
+  checkout?: boolean;
+  variant?: "card" | "button";
 }) {
   const environment = getPaddleEnvironment();
   const token = getPaddleClientToken();
@@ -109,6 +115,22 @@ export function PricingCheckout({
     });
   }
 
+  if (variant === "button") {
+    const tier = tiers[0];
+    const totals = tier ? prices[tier.priceId.month] : undefined;
+
+    return (
+      <button
+        type="button"
+        onClick={() => tier && subscribe(tier)}
+        disabled={!ready || !totals}
+        className="inline-block bg-blue-600 text-white px-5 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        Subscribe
+      </button>
+    );
+  }
+
   return (
     <div className="max-w-xl mx-auto">
       {tiers.map((tier) => {
@@ -166,14 +188,23 @@ export function PricingCheckout({
               ))}
             </ul>
 
-            <button
-              type="button"
-              onClick={() => subscribe(tier)}
-              disabled={!ready || !totals}
-              className="block w-full text-center bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Subscribe
-            </button>
+            {checkout ? (
+              <button
+                type="button"
+                onClick={() => subscribe(tier)}
+                disabled={!ready || !totals}
+                className="block w-full text-center bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Subscribe
+              </button>
+            ) : (
+              <a
+                href={isLoggedIn ? "/dashboard/billing" : "/login?subscribe=1"}
+                className="block w-full text-center bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition"
+              >
+                Subscribe
+              </a>
+            )}
           </div>
         );
       })}

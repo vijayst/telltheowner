@@ -2,6 +2,9 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { subscriptionGrantsAccess } from "@/lib/paddle/access";
 import { createBillingPortalUrl } from "@/lib/paddle/portal";
+import { countryCodeFromRequestHeader } from "@/lib/paddle/country";
+import { PricingCheckout } from "@/components/pricing/PricingCheckout";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 async function openBillingPortal() {
@@ -37,29 +40,45 @@ export default async function BillingPage() {
     },
   });
 
+  const headerStore = await headers();
+  const countryCode = countryCodeFromRequestHeader(
+    headerStore.get("x-vercel-ip-country")
+  );
   const business = businessUser?.business;
   const subscriptions = business?.subscriptions ?? [];
   const hasAccess = subscriptions.some((subscription) =>
     subscriptionGrantsAccess(subscription.status)
   );
+  const subscribeButton = !hasAccess ? (
+    <PricingCheckout
+      checkout
+      variant="button"
+      countryCode={countryCode}
+      email={session.user.email || undefined}
+      clientId={business?.clientId}
+    />
+  ) : null;
 
   return (
     <div className="max-w-2xl">
       <h2 className="text-2xl font-bold text-gray-900 mb-2">Billing</h2>
       <p className="text-gray-600 mb-8">
-        Update your payment method, cancel, or view invoices in the Paddle
-        customer portal.
+        {hasAccess
+          ? "Update your payment method, cancel, or view invoices in the Paddle customer portal."
+          : "Subscribe to Pro to collect voice reviews."}
       </p>
+
+      {!hasAccess ? (
+        <p className="text-sm text-gray-600 mb-6 -mt-4">
+          If you subscribed recently, your plan may take a moment to appear.
+          Refresh this page once processing is complete.
+        </p>
+      ) : null}
 
       {subscriptions.length === 0 ? (
         <div className="bg-white rounded-xl border border-gray-200 p-6">
           <p className="text-gray-700 mb-4">No subscription yet.</p>
-          <a
-            href="/pricing"
-            className="inline-block bg-blue-600 text-white px-5 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition"
-          >
-            View pricing
-          </a>
+          {subscribeButton}
         </div>
       ) : (
         <div className="space-y-4">
@@ -89,21 +108,17 @@ export default async function BillingPage() {
             </div>
           ))}
 
-          {business?.paddleCustomerId ? (
+          {hasAccess && business?.paddleCustomerId ? (
             <form action={openBillingPortal}>
               <button
                 type="submit"
                 className="bg-blue-600 text-white px-5 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition"
               >
-                {hasAccess ? "Manage billing" : "Open billing portal"}
+                Manage billing
               </button>
             </form>
-          ) : (
-            <p className="text-sm text-gray-600">
-              Billing portal opens after Paddle links this business to a
-              customer.
-            </p>
-          )}
+          ) : null}
+          {subscribeButton}
         </div>
       )}
     </div>

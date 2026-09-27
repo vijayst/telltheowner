@@ -511,10 +511,10 @@ export default async function Home() {
             their customers.
           </p>
           <a
-            href="/login"
+            href={isAuthenticated ? "/dashboard" : "/login"}
             className="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-50 transition transform hover:scale-105 shadow-lg inline-block"
           >
-            Start Your Free Trial
+            {isAuthenticated ? "Go to Dashboard" : "Start Your Free Trial"}
           </a>
         </div>
       </section>
