@@ -62,7 +62,7 @@ export default async function Pricing() {
               {
                 question: "Can I cancel anytime?",
                 answer:
-                  "Yes. There is no contract. Cancel whenever you want. Your plan stays active until the subscription end date, and we do not refund a subscription that has already been purchased.",
+                  "Yes. There is no contract. Cancel whenever you want. You can request a full refund within 14 days of a charge. After that, your plan stays active until the subscription end date.",
               },
             ].map((faq) => (
               <div

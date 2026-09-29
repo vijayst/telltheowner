@@ -25,10 +25,15 @@ export default function Terms() {
 
         <section className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Acceptance of Terms</h2>
+          <p className="text-gray-600 leading-relaxed mb-4">
+            These Terms of Service (&quot;Terms&quot;) are a contract between you and SoloPivot Labs Inc.
+            (&quot;SoloPivot Labs Inc.,&quot; &quot;we,&quot; &quot;our,&quot; or &quot;us&quot;), the company that operates
+            telltheowner.com (&quot;Service&quot;).
+          </p>
           <p className="text-gray-600 leading-relaxed">
-            By accessing or using telltheowner.com (&quot;Service&quot;), you agree to be bound by these 
-            Terms of Service (&quot;Terms&quot;) and all applicable laws and regulations. If you do not agree 
-            with any of these terms, you are prohibited from using the Service.
+            By accessing or using the Service, you agree to be bound by these Terms and all applicable
+            laws and regulations. If you do not agree with any of these terms, you are prohibited from
+            using the Service.
           </p>
         </section>
 
@@ -89,8 +94,9 @@ export default function Terms() {
 
           <h3 className="text-xl font-semibold text-gray-800 mb-3">4.3 Refunds</h3>
           <p className="text-gray-600 leading-relaxed">
-            We do not refund a subscription that has already been purchased. If you cancel, your plan
-            stays active until the subscription end date. See our{" "}
+            You may request a full refund within 14 days of the date a subscription payment is charged.
+            After that 14-day refund window, you can cancel and your plan stays active until the
+            subscription end date. See our{" "}
             <a href="/refunds" className="text-blue-600 hover:text-blue-700">
               refund policy
             </a>
@@ -277,6 +283,9 @@ export default function Terms() {
             If you have any questions about these Terms, please contact us:
           </p>
           <div className="bg-gray-50 p-6 rounded-lg">
+            <p className="text-gray-700 mb-2">
+              <strong>Company:</strong> SoloPivot Labs Inc.
+            </p>
             <p className="text-gray-700 mb-2">
               <strong>Email:</strong> legal@telltheowner.com
             </p>
