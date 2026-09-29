@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import {
   OPEN_COOKIE_SETTINGS_EVENT,
   clearAnalyticsCookies,
@@ -25,13 +26,23 @@ export function CookieSettingsButton({
   );
 }
 
+function isFeedbackWidgetPath(pathname: string | null) {
+  return Boolean(pathname && /^\/b\/[^/]+\/embed\/?$/.test(pathname));
+}
+
 export function CookieConsent() {
+  const pathname = usePathname();
+  const isWidget = isFeedbackWidgetPath(pathname);
   const [choice, setChoice] = useState<ConsentChoice | null | undefined>(
     undefined,
   );
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
+    if (isWidget) {
+      return;
+    }
+
     const current = readConsent();
     setChoice(current);
     setOpen(current === null);
@@ -45,7 +56,7 @@ export function CookieConsent() {
     const show = () => setOpen(true);
     window.addEventListener(OPEN_COOKIE_SETTINGS_EVENT, show);
     return () => window.removeEventListener(OPEN_COOKIE_SETTINGS_EVENT, show);
-  }, []);
+  }, [isWidget]);
 
   function choose(next: ConsentChoice) {
     const hadAnalytics = choice === "analytics";
@@ -67,7 +78,7 @@ export function CookieConsent() {
     setOpen(false);
   }
 
-  if (!open) {
+  if (isWidget || !open) {
     return null;
   }
 
