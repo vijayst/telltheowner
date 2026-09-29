@@ -62,7 +62,7 @@ export default async function Pricing() {
               {
                 question: "Can I cancel anytime?",
                 answer:
-                  "Yes. There is no contract. Cancel whenever you want and billing stops.",
+                  "Yes. There is no contract. Cancel whenever you want. Your plan stays active until the subscription end date, and we do not refund a subscription that has already been purchased.",
               },
             ].map((faq) => (
               <div

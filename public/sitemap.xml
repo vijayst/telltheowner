@@ -48,6 +48,14 @@
     <priority>0.5</priority>
   </url>
 
+  <!-- Refund Policy -->
+  <url>
+    <loc>https://telltheowner.com/refunds</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
   <!-- Product Demo - Leave Review -->
   <url>
     <loc>https://telltheowner.com/product/review-demo</loc>

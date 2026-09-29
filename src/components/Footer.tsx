@@ -64,6 +64,11 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
+                  <a href="/refunds" className="hover:text-blue-500 transition">
+                    Refund Policy
+                  </a>
+                </li>
+                <li>
                   <CookieSettingsButton className="hover:text-blue-500 transition">
                     Cookie settings
                   </CookieSettingsButton>

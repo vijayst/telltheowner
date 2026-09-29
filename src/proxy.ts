@@ -11,7 +11,8 @@ export default auth(async (req) => {
   const isOnPublicPage = req.nextUrl.pathname === "/" ||
                         req.nextUrl.pathname.startsWith("/about") ||
                         req.nextUrl.pathname.startsWith("/privacy") ||
-                        req.nextUrl.pathname.startsWith("/terms");
+                        req.nextUrl.pathname.startsWith("/terms") ||
+                        req.nextUrl.pathname.startsWith("/refunds");
 
   // Allow access to public pages (including home page) for everyone
   if (isOnPublicPage) {

@@ -20,7 +20,7 @@ export default function Terms() {
         <h1 className="text-4xl font-bold text-gray-900 mb-8">Terms of Service</h1>
         
         <p className="text-gray-600 mb-8 leading-relaxed">
-          Last updated: May 24, 2026
+          Last updated: September 29, 2026
         </p>
 
         <section className="mb-8">
@@ -89,8 +89,12 @@ export default function Terms() {
 
           <h3 className="text-xl font-semibold text-gray-800 mb-3">4.3 Refunds</h3>
           <p className="text-gray-600 leading-relaxed">
-            Refunds are processed in accordance with our refund policy. Please contact our support team 
-            for refund requests.
+            We do not refund a subscription that has already been purchased. If you cancel, your plan
+            stays active until the subscription end date. See our{" "}
+            <a href="/refunds" className="text-blue-600 hover:text-blue-700">
+              refund policy
+            </a>
+            .
           </p>
         </section>
 
