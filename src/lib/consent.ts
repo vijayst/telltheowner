@@ -37,23 +37,36 @@ export function loadGoogleAnalytics() {
 
   win.dataLayer = win.dataLayer || [];
   if (!win.gtag) {
-    win.gtag = (...args: unknown[]) => {
-      win.dataLayer?.push(args);
+    // gtag.js only processes Arguments objects on dataLayer. Pushing an array
+    // makes it ignore the command, so no hits are sent.
+    win.gtag = function gtag() {
+      win.dataLayer?.push(arguments);
     };
   }
-
-  win.gtag("js", new Date());
-  win.gtag("config", GA_MEASUREMENT_ID);
 
   if (document.getElementById("ga-loader")) {
     return;
   }
+
+  win.gtag("js", new Date());
+  win.gtag("config", GA_MEASUREMENT_ID, { send_page_view: false });
 
   const script = document.createElement("script");
   script.id = "ga-loader";
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
   document.head.appendChild(script);
+}
+
+export function trackPageView(path: string) {
+  const win = window as AnalyticsWindow;
+  loadGoogleAnalytics();
+  win.gtag?.("event", "page_view", {
+    send_to: GA_MEASUREMENT_ID,
+    page_path: path,
+    page_location: window.location.href,
+    page_title: document.title,
+  });
 }
 
 export function clearAnalyticsCookies() {

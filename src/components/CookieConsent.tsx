@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation";
 import {
   OPEN_COOKIE_SETTINGS_EVENT,
   clearAnalyticsCookies,
-  loadGoogleAnalytics,
   openCookieSettings,
+  trackPageView,
   readConsent,
   writeConsent,
   type ConsentChoice,
@@ -47,9 +47,7 @@ export function CookieConsent() {
     setChoice(current);
     setOpen(current === null);
 
-    if (current === "analytics") {
-      loadGoogleAnalytics();
-    } else {
+    if (current !== "analytics") {
       clearAnalyticsCookies();
     }
 
@@ -57,6 +55,14 @@ export function CookieConsent() {
     window.addEventListener(OPEN_COOKIE_SETTINGS_EVENT, show);
     return () => window.removeEventListener(OPEN_COOKIE_SETTINGS_EVENT, show);
   }, [isWidget]);
+
+  useEffect(() => {
+    if (isWidget || choice !== "analytics" || !pathname) {
+      return;
+    }
+
+    trackPageView(pathname);
+  }, [isWidget, choice, pathname]);
 
   function choose(next: ConsentChoice) {
     const hadAnalytics = choice === "analytics";
@@ -68,10 +74,6 @@ export function CookieConsent() {
         window.location.reload();
         return;
       }
-    }
-
-    if (next === "analytics") {
-      loadGoogleAnalytics();
     }
 
     setChoice(next);
